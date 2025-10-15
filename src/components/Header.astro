@@ -1,0 +1,21 @@
+---
+import HeaderLink from "@/components/HeaderLink.astro";
+---
+
+<header
+  class="tracking-tight md:absolute bg-[#fffffe] max-w-3xl w-full rounded-full flex mt-5"
+>
+  <div class="items-center hidden md:flex pl-4 absolute h-full pb-1">
+    <a href="/"> logo </a>
+  </div>
+  <nav class="flex py-4 px-4 mx-auto">
+    <div class="flex gap-5 text-center">
+      <HeaderLink href="/">HOME</HeaderLink>
+      <HeaderLink href="/standhouders">STANDHOUDERS</HeaderLink>
+      <HeaderLink rel="prefetch" href="/animatie-zondag"
+        >ANIMATIE ZONDAG
+      </HeaderLink>
+      <HeaderLink rel="prefetch" href="/privacy">PRIVACY / CONTACT </HeaderLink>
+    </div>
+  </nav>
+</header>

@@ -6,9 +6,24 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "codegen": "graphql-codegen --config ./src/codegen.ts"
   },
   "dependencies": {
-    "astro": "^5.13.5"
+    "@tailwindcss/vite": "^4.1.12",
+    "astro": "^5.14.5",
+    "astro-seo": "^0.8.4",
+    "graphql": "^16.11.0",
+    "graphql-request": "^7.2.0",
+    "tailwind-fluid-typography": "^2.0.0",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^4.1.12"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "5.0.7",
+    "@graphql-codegen/typescript": "4.1.6",
+    "@graphql-codegen/typescript-graphql-request": "^6.3.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.4"
   }
 }

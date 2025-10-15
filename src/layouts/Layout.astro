@@ -1,22 +1,26 @@
+---
+import "@/styles/global.css";
+
+import BaseHead from "@/components/BaseHead.astro";
+import type { ComponentProps } from "astro/types";
+
+type Props = ComponentProps<typeof BaseHead> & {
+  style?: string;
+  class?: string;
+};
+
+const { style, class: className, ...baseHeadProps } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <BaseHead {...baseHeadProps} />
+  <body style={style}>
+    <div class="fixed w-screen top-10 left-0 z-1 justify-center mr-auto flex">
+      <!-- <Header links={headerLinks} /> -->
+    </div>
+    <main class:list={["min-h-screen flex relative", className]}>
+      <slot />
+    </main>
+  </body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

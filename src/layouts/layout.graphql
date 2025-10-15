@@ -1,0 +1,13 @@
+query Layout {
+  global {
+    siteName
+    siteDescription
+    header {
+      link {
+        text
+        url
+        isExternal
+      }
+    }
+  }
+}

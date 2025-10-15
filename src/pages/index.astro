@@ -1,11 +1,42 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "@/layouts/Layout.astro";
+import { getHeaderLinks } from "@/lib/get-header-links";
+import { getWrappedSdk } from "@/lib/get-wrapped-sdk";
+import { Image } from "astro:assets";
+import magicalCosplayConLogo from "@/images/magical_cosplay_con_logo.svg";
+import magicalDisneyMarktLogo from "@/images/magical_disney_markt_logo.png";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const sdk = getWrappedSdk();
+const { data } = await sdk.Layout();
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title={data.global?.siteName}
+  description={data.global?.siteDescription}
+>
+  <div
+    class="absolute inset-0 z-0 bg-[url(/background.png)] bg-cover bg-no-repeat bg-fixed bg-center text-white h-screen w-screen"
+  >
+    <div class="place-content-center text-center h-screen">
+      <h1 class="fluid-4xl font-bold">Magical Con</h1>
+      <p class="fluid-lg font-bold">More info coming soon!</p>
+      <div class="flex md:flex-row flex-col justify-center items-center">
+        <Image
+          src={magicalCosplayConLogo}
+          height="300"
+          width="480"
+          alt="Magical Cosplay Con logo"
+          class="md:mr-20"
+          widths={[240, 540, 720, magicalCosplayConLogo.width]}
+        />
+        <Image
+          src={magicalDisneyMarktLogo}
+          height="300"
+          width="480"
+          alt="Magical Disney Markt logo"
+          widths={[240, 540, 720, magicalDisneyMarktLogo.width]}
+        />
+      </div>
+    </div>
+  </div>
 </Layout>
