@@ -1,0 +1,38 @@
+---
+import type { PhotographersQuery } from "@/generated/graphql";
+import { Image } from "astro:assets";
+
+type Props = {
+  photographers: PhotographersQuery["photographers"];
+};
+---
+
+<div class="flex flex-col gap-4">
+  {
+    Astro.props.photographers.map((props) => (
+      <div class="shrink-0 group block">
+        <div class="flex items-center text-left">
+          <Image
+            decoding="async"
+            loading="lazy"
+            class="inline-block shrink-0 size-[62px] rounded-full object-cover object-center"
+            quality={80}
+            src={props!.image.url!}
+            alt={props!.image.alternativeText!}
+            width={props!.image.width!}
+            height={props!.image.height!}
+          />
+
+          <div class="ms-3">
+            <h3 class="font-bold">{props!.name}</h3>
+            {props!.social.map((social) => (
+              <p class="text-sm font-medium">
+                {social!.platform}: {social!.handle}
+              </p>
+            ))}
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>

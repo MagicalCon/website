@@ -8,12 +8,16 @@ import { Image } from "astro:assets";
 import magicalDisneyMarktLogo from "@/images/magical_disney_markt_logo.svg";
 import EventInfo from "@/components/EventInfo.astro";
 import CosplayerGrid from "@/components/CosplayerGrid.astro";
+import PhotographerGrid from "@/components/PhotographerGrid.astro";
 
 const sdk = getWrappedSdk();
 const { data } = await sdk.Layout();
 const {
   data: { cosplayers },
 } = await sdk.Cosplayers();
+const {
+  data: { photographers },
+} = await sdk.Photographers();
 
 const FOOD_ITEMS = [
   { icon: "🍟", text: "Fries with snacks" },
@@ -48,7 +52,7 @@ const FOOD_ITEMS = [
   <EventInfo
     target="November 16 2025 12:00:00"
     time="November 16 2025 12:00 - 18:00"
-    location="Belgium - GC Klein Boom, Mechelbaan 604, 2580 Putte"
+    location="Belgium - Stadsfeestzaal Aarschot, Demervallei 14, 3200 Aarschot"
   />
   <Section
     headingGradientClass="from-cyan-500 to-blue-500"
@@ -97,7 +101,14 @@ const FOOD_ITEMS = [
   />
   <Section
     headingGradientClass="from-cyan-500 to-blue-500"
-    title="Photographers "
+    title="Photographers"
     class="bg-white"
-  />
+  >
+    <div
+      slot="content"
+      class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"
+    >
+      <PhotographerGrid photographers={photographers} />
+    </div>
+  </Section>
 </Layout>

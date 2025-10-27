@@ -1,0 +1,15 @@
+query Photographers {
+  photographers {
+    name
+    image {
+      alternativeText
+      width
+      height
+      url
+    }
+    social {
+      platform
+      handle
+    }
+  }
+}

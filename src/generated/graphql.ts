@@ -44,6 +44,27 @@ export type BooleanFilterInput = {
   startsWith?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type ComponentDataDisplayPersona = {
+  __typename?: 'ComponentDataDisplayPersona';
+  handle: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  platform: Scalars['String']['output'];
+};
+
+export type ComponentDataDisplayPersonaFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentDataDisplayPersonaFiltersInput>>>;
+  handle?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentDataDisplayPersonaFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentDataDisplayPersonaFiltersInput>>>;
+  platform?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentDataDisplayPersonaInput = {
+  handle?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  platform?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type ComponentLayoutFooter = {
   __typename?: 'ComponentLayoutFooter';
   id: Scalars['ID']['output'];
@@ -114,8 +135,8 @@ export type Cosplayer = {
   __typename?: 'Cosplayer';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   documentId: Scalars['ID']['output'];
-  image?: Maybe<UploadFile>;
-  name?: Maybe<Scalars['String']['output']>;
+  image: UploadFile;
+  name: Scalars['String']['output'];
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
@@ -204,7 +225,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = ComponentLayoutFooter | ComponentLayoutHeader | ComponentSharedSeo | ComponentTypographyLink | Cosplayer | Global | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentDataDisplayPersona | ComponentLayoutFooter | ComponentLayoutHeader | ComponentSharedSeo | ComponentTypographyLink | Cosplayer | Global | I18NLocale | Photographer | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Global = {
   __typename?: 'Global';
@@ -338,6 +359,7 @@ export type Mutation = {
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createCosplayer?: Maybe<Cosplayer>;
+  createPhotographer?: Maybe<Photographer>;
   createReviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
   createReviewWorkflowsWorkflowStage?: Maybe<ReviewWorkflowsWorkflowStage>;
   /** Create a new role */
@@ -346,6 +368,7 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteCosplayer?: Maybe<DeleteMutationResponse>;
   deleteGlobal?: Maybe<DeleteMutationResponse>;
+  deletePhotographer?: Maybe<DeleteMutationResponse>;
   deleteReviewWorkflowsWorkflow?: Maybe<DeleteMutationResponse>;
   deleteReviewWorkflowsWorkflowStage?: Maybe<DeleteMutationResponse>;
   deleteUploadFile?: Maybe<UploadFile>;
@@ -364,6 +387,7 @@ export type Mutation = {
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateCosplayer?: Maybe<Cosplayer>;
   updateGlobal?: Maybe<Global>;
+  updatePhotographer?: Maybe<Photographer>;
   updateReviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
   updateReviewWorkflowsWorkflowStage?: Maybe<ReviewWorkflowsWorkflowStage>;
   updateUploadFile: UploadFile;
@@ -383,6 +407,12 @@ export type MutationChangePasswordArgs = {
 
 export type MutationCreateCosplayerArgs = {
   data: CosplayerInput;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type MutationCreatePhotographerArgs = {
+  data: PhotographerInput;
   status?: InputMaybe<PublicationStatus>;
 };
 
@@ -410,6 +440,11 @@ export type MutationCreateUsersPermissionsUserArgs = {
 
 
 export type MutationDeleteCosplayerArgs = {
+  documentId: Scalars['ID']['input'];
+};
+
+
+export type MutationDeletePhotographerArgs = {
   documentId: Scalars['ID']['input'];
 };
 
@@ -479,6 +514,13 @@ export type MutationUpdateGlobalArgs = {
 };
 
 
+export type MutationUpdatePhotographerArgs = {
+  data: PhotographerInput;
+  documentId: Scalars['ID']['input'];
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
 export type MutationUpdateReviewWorkflowsWorkflowArgs = {
   data: ReviewWorkflowsWorkflowInput;
   documentId: Scalars['ID']['input'];
@@ -525,6 +567,49 @@ export type PaginationArg = {
   start?: InputMaybe<Scalars['Int']['input']>;
 };
 
+export type Photographer = {
+  __typename?: 'Photographer';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  image: UploadFile;
+  name: Scalars['String']['output'];
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  social: Array<Maybe<ComponentDataDisplayPersona>>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type PhotographerSocialArgs = {
+  filters?: InputMaybe<ComponentDataDisplayPersonaFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type PhotographerEntityResponseCollection = {
+  __typename?: 'PhotographerEntityResponseCollection';
+  nodes: Array<Photographer>;
+  pageInfo: Pagination;
+};
+
+export type PhotographerFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<PhotographerFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  documentId?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<PhotographerFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<PhotographerFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  social?: InputMaybe<ComponentDataDisplayPersonaFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type PhotographerInput = {
+  image?: InputMaybe<Scalars['ID']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  social?: InputMaybe<Array<InputMaybe<ComponentDataDisplayPersonaInput>>>;
+};
+
 export enum PublicationStatus {
   Draft = 'DRAFT',
   Published = 'PUBLISHED'
@@ -540,6 +625,9 @@ export type Query = {
   i18NLocales: Array<Maybe<I18NLocale>>;
   i18NLocales_connection?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
+  photographer?: Maybe<Photographer>;
+  photographers: Array<Maybe<Photographer>>;
+  photographers_connection?: Maybe<PhotographerEntityResponseCollection>;
   reviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
   reviewWorkflowsWorkflowStage?: Maybe<ReviewWorkflowsWorkflowStage>;
   reviewWorkflowsWorkflowStages: Array<Maybe<ReviewWorkflowsWorkflowStage>>;
@@ -601,6 +689,28 @@ export type QueryI18NLocalesArgs = {
 
 export type QueryI18NLocales_ConnectionArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryPhotographerArgs = {
+  documentId: Scalars['ID']['input'];
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryPhotographersArgs = {
+  filters?: InputMaybe<PhotographerFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryPhotographers_ConnectionArgs = {
+  filters?: InputMaybe<PhotographerFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   status?: InputMaybe<PublicationStatus>;
@@ -1113,7 +1223,12 @@ export type LayoutQuery = { __typename?: 'Query', global?: { __typename?: 'Globa
 export type CosplayersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CosplayersQuery = { __typename?: 'Query', cosplayers: Array<{ __typename?: 'Cosplayer', name?: string | null, image?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, width?: number | null, height?: number | null } | null } | null> };
+export type CosplayersQuery = { __typename?: 'Query', cosplayers: Array<{ __typename?: 'Cosplayer', name: string, image: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, width?: number | null, height?: number | null } } | null> };
+
+export type PhotographersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PhotographersQuery = { __typename?: 'Query', photographers: Array<{ __typename?: 'Photographer', name: string, image: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, url: string }, social: Array<{ __typename?: 'ComponentDataDisplayPersona', platform: string, handle: string } | null> } | null> };
 
 
 export const LayoutDocument = `
@@ -1144,6 +1259,23 @@ export const CosplayersDocument = `
   }
 }
     `;
+export const PhotographersDocument = `
+    query Photographers {
+  photographers {
+    name
+    image {
+      alternativeText
+      width
+      height
+      url
+    }
+    social {
+      platform
+      handle
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -1157,6 +1289,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     Cosplayers(variables?: CosplayersQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: CosplayersQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<CosplayersQuery>(CosplayersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Cosplayers', 'query', variables);
+    },
+    Photographers(variables?: PhotographersQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: PhotographersQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<PhotographersQuery>(PhotographersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Photographers', 'query', variables);
     }
   };
 }
