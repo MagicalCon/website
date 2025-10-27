@@ -1,6 +1,7 @@
 ---
 import { SEO } from "astro-seo";
 import type { ComponentProps } from "astro/types";
+import { Font } from "astro:assets";
 
 type Props = Omit<ComponentProps<typeof SEO>, "extend">;
 ---
@@ -19,4 +20,7 @@ type Props = Omit<ComponentProps<typeof SEO>, "extend">;
     }}
     {...Astro.props}
   />
+
+  <Font cssVariable="--font-mouse" preload />
+  <Font cssVariable="--font-open" preload />
 </head>

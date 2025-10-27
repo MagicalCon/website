@@ -1,0 +1,11 @@
+query Cosplayers {
+  cosplayers {
+    name
+    image {
+      alternativeText
+      url
+      width
+      height
+    }
+  }
+}

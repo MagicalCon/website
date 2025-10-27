@@ -1,0 +1,24 @@
+---
+type Props = {
+  title: string;
+  subText?: string;
+  class?: string;
+  headingGradientClass: string;
+};
+---
+
+<section class:list={["text-center md:py-20 py-10", Astro.props.class]}>
+  <h1
+    class={`font-bold fluid-3xl bg-gradient-to-r ${Astro.props.headingGradientClass} bg-clip-text text-transparent font-mouse`}
+  >
+    {Astro.props.title}
+  </h1>
+
+  {
+    Astro.props.subText && (
+      <h2 class="md:fluid-lg mt-3">{Astro.props.subText}</h2>
+    )
+  }
+
+  <slot name="content" />
+</section>

@@ -1,0 +1,37 @@
+---
+import type { Cosplayer, CosplayersQuery } from "@/generated/graphql";
+import { Image } from "astro:assets";
+
+type Props = {
+  cosplayers: CosplayersQuery["cosplayers"];
+};
+---
+
+<div class="place-content-center md:grid-cols-4 grid gap-8">
+  {
+    Astro.props.cosplayers.map((props) => (
+      <div class="max-w-80">
+        <div class="w-full">
+          <div class="z-0 relative">
+            <div class="relative overflow-hidden z-10">
+              <div class="w-full" style="padding-bottom: 100%;">
+                <Image
+                  class="absolute top-0 left-0 w-full h-full rounded-full object-cover object-center"
+                  quality={75}
+                  height={props!.image!.height!}
+                  width={props!.image!.width!}
+                  src={props!.image!.url}
+                  alt={props!.image!.alternativeText!}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h4 class="font-semibold text-lg leading-normal mt-2 max-w-60 text-center">
+          {props!.name}
+        </h4>
+      </div>
+    ))
+  }
+</div>

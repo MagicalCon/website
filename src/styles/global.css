@@ -1,3 +1,8 @@
 @plugin "tailwind-fluid-typography";
 
 @import "tailwindcss";
+
+@theme inline {
+  --font-mouse: var(--font-mouse);
+  --font-sans: var(--font-open);
+}

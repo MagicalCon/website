@@ -1110,6 +1110,11 @@ export type LayoutQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type LayoutQuery = { __typename?: 'Query', global?: { __typename?: 'Global', siteName: string, siteDescription: string, header?: { __typename?: 'ComponentLayoutHeader', link?: Array<{ __typename?: 'ComponentTypographyLink', text: string, url: string, isExternal?: boolean | null } | null> | null } | null } | null };
 
+export type CosplayersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CosplayersQuery = { __typename?: 'Query', cosplayers: Array<{ __typename?: 'Cosplayer', name?: string | null, image?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, width?: number | null, height?: number | null } | null } | null> };
+
 
 export const LayoutDocument = `
     query Layout {
@@ -1126,6 +1131,19 @@ export const LayoutDocument = `
   }
 }
     `;
+export const CosplayersDocument = `
+    query Cosplayers {
+  cosplayers {
+    name
+    image {
+      alternativeText
+      url
+      width
+      height
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -1136,6 +1154,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     Layout(variables?: LayoutQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: LayoutQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<LayoutQuery>(LayoutDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Layout', 'query', variables);
+    },
+    Cosplayers(variables?: CosplayersQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: CosplayersQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<CosplayersQuery>(CosplayersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Cosplayers', 'query', variables);
     }
   };
 }

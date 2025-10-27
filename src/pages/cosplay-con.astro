@@ -1,0 +1,54 @@
+---
+import Hero from "@/components/Hero.astro";
+import Section from "@/components/Section.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getHeaderLinks } from "@/lib/get-header-links";
+import { getWrappedSdk } from "@/lib/get-wrapped-sdk";
+import { Image } from "astro:assets";
+import magicalCosplayConLogo from "@/images/magical_cosplay_con_logo.svg";
+import EventInfo from "@/components/EventInfo.astro";
+
+const sdk = getWrappedSdk();
+const { data } = await sdk.Layout();
+---
+
+<Layout
+  title={data.global?.siteName}
+  description={data.global?.siteDescription}
+  headerLinks={getHeaderLinks(data)}
+  class="bg-fuchsia-200"
+>
+  <Hero
+    bgColorClass="bg-fuchsia-950"
+    gradientClass="from-violet-200 to-pink-200"
+    text="Magical activities and cosplays"
+  >
+    <Image
+      slot="logo"
+      src={magicalCosplayConLogo}
+      height="300"
+      width="480"
+      alt="Magical Cosplay Con logo"
+      widths={[240, 540, 720, magicalCosplayConLogo.width]}
+    />
+  </Hero>
+  <EventInfo
+    target="July 25 2026 10:00:00"
+    time="July 25 + 26 2026 10:00 - 18:00"
+    location="Belgium - GC Klein Boom, Mechelbaan 604, 2580 Putte"
+  />
+  <Section
+    headingGradientClass="from-[#232946] to-indigo-600"
+    title="Catwalk Contest"
+    subText="Sign up at BeCosplay's stand"
+  />
+  <Section
+    headingGradientClass="from-[#232946] to-indigo-600"
+    title="Playback Contest"
+    class="bg-white"
+  />
+  <Section
+    headingGradientClass="from-[#232946] to-indigo-600"
+    title="Workshop"
+  />
+</Layout>

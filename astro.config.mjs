@@ -1,6 +1,6 @@
 // @ts-check
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
@@ -8,4 +8,20 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [],
+  experimental: {
+    fonts: [
+      {
+        provider: fontProviders.google(),
+        name: "Mouse Memoirs",
+        cssVariable: "--font-mouse",
+        weights: [400, 700],
+      },
+      {
+        provider: fontProviders.google(),
+        name: "Open Sans",
+        cssVariable: "--font-open",
+        weights: [400, 700],
+      },
+    ],
+  },
 });

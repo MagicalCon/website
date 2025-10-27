@@ -13,6 +13,7 @@ const { data } = await sdk.Layout();
 <Layout
   title={data.global?.siteName}
   description={data.global?.siteDescription}
+  headerLinks={getHeaderLinks(data)}
 >
   <div
     class="absolute inset-0 z-0 bg-[url(/background.png)] bg-cover bg-no-repeat bg-fixed bg-center text-white h-screen w-screen"

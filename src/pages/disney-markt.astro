@@ -1,0 +1,103 @@
+---
+import Hero from "@/components/Hero.astro";
+import Section from "@/components/Section.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getHeaderLinks } from "@/lib/get-header-links";
+import { getWrappedSdk } from "@/lib/get-wrapped-sdk";
+import { Image } from "astro:assets";
+import magicalDisneyMarktLogo from "@/images/magical_disney_markt_logo.svg";
+import EventInfo from "@/components/EventInfo.astro";
+import CosplayerGrid from "@/components/CosplayerGrid.astro";
+
+const sdk = getWrappedSdk();
+const { data } = await sdk.Layout();
+const {
+  data: { cosplayers },
+} = await sdk.Cosplayers();
+
+const FOOD_ITEMS = [
+  { icon: "🍟", text: "Fries with snacks" },
+  { icon: "🍔", text: "Hamburgers, Bickyburger,..." },
+  { icon: "🌭", text: "Bratwurst" },
+  { icon: "🍕", text: "Pizza" },
+  { icon: "🍝", text: "Pasta" },
+  { icon: "🍦", text: "Ice Cream" },
+];
+---
+
+<Layout
+  title={data.global?.siteName}
+  description={data.global?.siteDescription}
+  headerLinks={getHeaderLinks(data)}
+  class="bg-amber-300"
+>
+  <Hero
+    bgColorClass="bg-blue-500"
+    gradientClass="from-yellow-200 to-orange-200"
+    text="Collect magical items"
+  >
+    <Image
+      slot="logo"
+      src={magicalDisneyMarktLogo}
+      height="300"
+      width="480"
+      alt="Magical Disney Markt logo"
+      widths={[240, 540, 720, magicalDisneyMarktLogo.width]}
+    />
+  </Hero>
+  <EventInfo
+    target="November 16 2025 12:00:00"
+    time="November 16 2025 12:00 - 18:00"
+    location="Belgium - GC Klein Boom, Mechelbaan 604, 2580 Putte"
+  />
+  <Section
+    headingGradientClass="from-cyan-500 to-blue-500"
+    title="Greg's Home Food Truck"
+    subText="Buy your food & drinks for fair prices!"
+  >
+    <div
+      slot="content"
+      class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"
+    >
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {
+          FOOD_ITEMS.map(({ icon, text }) => (
+            <div class="bg-[#fffffe] rounded-lg p-6">
+              <h3 class="font-bold pb-4">{text}</h3>
+              <p class="text-5xl">{icon}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </Section>
+  <Section
+    headingGradientClass="from-cyan-500 to-blue-500"
+    title="Cosplayers"
+    class="bg-white"
+  >
+    <div slot="content" class="container max-w-5xl mx-auto">
+      <CosplayerGrid cosplayers={cosplayers} />
+    </div>
+  </Section>
+  <Section
+    headingGradientClass="from-cyan-500 to-blue-500"
+    title="Grime For Children"
+  />
+  <Section
+    headingGradientClass="from-cyan-500 to-blue-500"
+    title="Tattoo Shop"
+    subText="BlackSwan Tattoo & Inktherapy will be present to create your next beautiful tattoo!"
+    class="bg-white"
+  />
+  <Section
+    headingGradientClass="from-cyan-500 to-blue-500"
+    title="Workshop"
+    subText="Create your own Disney ears and hats"
+  />
+  <Section
+    headingGradientClass="from-cyan-500 to-blue-500"
+    title="Photographers "
+    class="bg-white"
+  />
+</Layout>

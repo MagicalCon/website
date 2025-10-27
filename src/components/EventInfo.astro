@@ -1,0 +1,108 @@
+---
+import Countdown from "./Countdown.astro";
+
+type Props = {
+  target: string;
+  time: string;
+  location: string;
+};
+
+const { target, time, location } = Astro.props;
+---
+
+<section
+  class="lg:py-xl bg-[#fffffe] px-5 py-6 sm:py-12 lg:rounded-lg md:mt-[-40px] w-full flex-grow mx-auto lg:max-w-7xl border-solid border-1 border-gray-200"
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="md:flex md:items-center md:justify-between md:space-x-16">
+      <div class="max-w-lg xl:max-w-2xl">
+        <Countdown target={target} />
+      </div><div
+        class="mt-12 flex flex-grow items-center space-x-4 sm:space-x-8 md:mt-0 lg:space-x-16"
+      >
+        <div>
+          <svg
+            class="h-auto w-4 text-black"
+            viewBox="0 0 16 81"
+            fill="none"
+            stroke="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+            ><line
+              y1="-0.5"
+              x2="18.0278"
+              y2="-0.5"
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 56)"
+            ></line><line
+              y1="-0.5"
+              x2="18.0278"
+              y2="-0.5"
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 21)"
+            ></line><line
+              y1="-0.5"
+              x2="18.0278"
+              y2="-0.5"
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 49)"
+            ></line><line
+              y1="-0.5"
+              x2="18.0278"
+              y2="-0.5"
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 14)"
+            ></line><line
+              y1="-0.5"
+              x2="18.0278"
+              y2="-0.5"
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 42)"
+            ></line><line
+              y1="-0.5"
+              x2="18.0278"
+              y2="-0.5"
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 7)"
+            ></line><line
+              y1="-0.5"
+              x2="18.0278"
+              y2="-0.5"
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 70)"
+            ></line><line
+              y1="-0.5"
+              x2="18.0278"
+              y2="-0.5"
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 35)"
+            ></line><line
+              y1="-0.5"
+              x2="18.0278"
+              y2="-0.5"
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 0)"
+            ></line><line
+              y1="-0.5"
+              x2="18.0278"
+              y2="-0.5"
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 63)"
+            ></line><line
+              y1="-0.5"
+              x2="18.0278"
+              y2="-0.5"
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 28)"
+            ></line></svg
+          >
+        </div>
+        <div>
+          <p
+            class="font-pj mt-2 text-base font-normal text-gray-800 lg:text-xl"
+          >
+            🕘 {time}
+          </p>
+          <p
+            class="font-pj mt-2 text-base font-normal text-gray-800 lg:text-xl"
+          >
+            📍 {location}
+          </p>
+          <p
+            class="font-pj mt-2 text-base font-normal text-gray-800 lg:text-xl"
+          >
+            🚘 <span class="underline">Free parking!</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
