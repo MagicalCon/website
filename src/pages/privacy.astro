@@ -1,0 +1,199 @@
+---
+import Section from "@/components/Section.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getHeaderLinks } from "@/lib/get-header-links";
+import { getWrappedSdk } from "@/lib/get-wrapped-sdk";
+
+const sdk = getWrappedSdk();
+const { data } = await sdk.Layout();
+---
+
+<Layout
+  title={data.global?.siteName}
+  description={data.global?.siteDescription}
+  headerLinks={getHeaderLinks(data)}
+  class="bg-[#f2f7f5] text-[#00473e]"
+>
+  <Section headingGradientClass="from-[#00473e] to-[#00473e]" title="Privacy">
+    <div slot="content" class="container max-w-5xl mx-auto">
+      <p>
+        Magical Events, located at Hoog Heultje 36, 2260 Westerlo, is
+        <strong>responsible for the processing of personal data</strong> as outlined
+        in this privacy statement.
+      </p>
+
+      <h2 class="pb-4 fluid-3xl font-mouse">Contact Details:</h2>
+      <ul>
+        <li>https://magicalcon.be</li>
+        <li>Hoog Heultje 36, 2260 Westerlo</li>
+        <li>+32494525835</li>
+        <li>infomagicalcon@gmail.com</li>
+        <li>van Weert, Liv / BE0752704855</li>
+      </ul>
+
+      <h2 class="pb-4 fluid-3xl font-mouse">Personal Data We Process</h2>
+
+      <p>
+        Magical Events processes your personal data because you
+        <strong
+          >use our services and/or because you provide this data to us yourself</strong
+        >. Below you will find an overview of the personal data we process:
+      </p>
+      <ul>
+        <li>First and last name</li>
+        <li>Address details</li>
+        <li>Phone number</li>
+        <li>Email address</li>
+        <li>Other information you share with us</li>
+      </ul>
+
+      <h2 class="pb-4 fluid-3xl font-mouse">
+        Special and/or Sensitive Personal Data We Process
+      </h2>
+
+      <p>
+        Our website and/or service <strong
+          >does not intend to collect data about website visitors younger than
+          16 years old</strong
+        >. Unless they have permission from parents or a guardian. However, we
+        cannot check if a visitor is older than 16. We therefore advise parents
+        to be involved in their children's online activities to prevent data
+        about children from being collected without parental consent. If you are
+        convinced that we have collected personal data about a minor without
+        that permission, please contact us via infomagicalcon@gmail.com, and we
+        will delete this information.
+      </p>
+
+      <h2 class="pb-4 fluid-3xl font-mouse">
+        Purposes for which Magical Events processes your personal data
+      </h2>
+
+      <p>
+        Magical Events processes your personal data for the following purposes:
+      </p>
+      <ul>
+        <li><strong>Handling your payment</strong></li>
+        <li>
+          <strong>Sending our newsletter and/or advertising flyer</strong>
+        </li>
+        <li>
+          <strong>Being able to call or email you if necessary</strong> to perform
+          our services
+        </li>
+        <li><strong>To deliver goods and services to you</strong></li>
+      </ul>
+
+      <h2 class="pb-4 fluid-3xl font-mouse">Automated Decision-Making</h2>
+
+      <p>
+        Magical Events <strong
+          >does not make decisions based on automated processing</strong
+        > about matters that could have (significant) consequences for individuals.
+        This concerns decisions made by computer programs or systems, without human
+        intervention (e.g., an employee of Magical Events). Magical Events uses the
+        following computer programs or systems: We use Gmail and Microsoft OneDrive
+        for data storage and Resend for managing and sending emails.
+      </p>
+
+      <h2 class="pb-4 fluid-3xl font-mouse">How Long We Store Personal Data</h2>
+
+      <p>
+        Magical Events <strong
+          >does not store your personal data for longer than is strictly
+          necessary</strong
+        > to achieve the purposes for which your data is collected. We store the
+        data indefinitely in our systems (Gmail and OneDrive), unless you submit
+        a request to delete your data.
+      </p>
+
+      <h2 class="pb-4 fluid-3xl font-mouse">
+        Sharing Personal Data with Third Parties
+      </h2>
+
+      <p>
+        Magical Events <strong
+          >shares your personal data with various third parties</strong
+        > if this is necessary for executing the agreement and to comply with any
+        legal obligation. With companies that process your data on our behalf, we
+        conclude a processor agreement to ensure the same level of security and confidentiality
+        of your data. Magical Events remains responsible for these processing operations.
+        Below is an overview of the third parties with whom we share data:
+      </p>
+      <ul>
+        <li>
+          <strong>Google (Gmail):</strong> For receiving, storing, and sending email
+          communication. The data processed includes your name, email address, and
+          the content of the emails.
+        </li>
+        <li>
+          <strong>Microsoft (OneDrive):</strong> For storing documents and data related
+          to our services. This may include contact details.
+        </li>
+        <li>
+          <strong>Resend:</strong> For the technical management and sending of emails.
+          Your email address and name are processed here.
+        </li>
+      </ul>
+
+      <h2 class="pb-4 fluid-3xl font-mouse">
+        Viewing, Modifying, or Deleting Data
+      </h2>
+
+      <p>
+        You have the <strong
+          >right to view, correct, or delete your personal data</strong
+        >. Additionally, you have the right to <strong
+          >withdraw any consent</strong
+        >
+        for data processing or to <strong>object</strong> to the processing of your
+        personal data by Magical Events, and you have the <strong
+          >right to data portability</strong
+        >. This means that you can submit a request to us to send the personal
+        data we have about you in a computer file to you or another organization
+        named by you.
+      </p>
+      <p>
+        You can send a request for access, correction, deletion, data transfer
+        of your personal data, or request for withdrawal of your consent or
+        objection to the processing of your personal data to <strong
+          >infomagicalcon@gmail.com</strong
+        >.
+      </p>
+      <p>
+        To ensure that the request for access has been made by you, we ask you
+        to <strong>send a copy of your identity document</strong> with the request.
+        <strong
+          >Black out your passport photo, MRZ (machine-readable zone, the strip
+          with numbers at the bottom of the passport), passport number, and
+          Citizen Service Number (BSN) in this copy.</strong
+        > This is to protect your privacy. We will respond to your request as quickly
+        as possible, but within four weeks.
+      </p>
+      <p>
+        Magical Events also wishes to inform you that you have the option to <strong
+          >file a complaint with the national supervisory authority, the Dutch
+          Data Protection Authority</strong
+        >. This can be done via the following link: <a
+          href="https://autoriteitpersoonsgegevens.nl/nl/contact-met-de-autoriteit-persoonsgegevens/tip-ons"
+          target="_blank"
+          >https://autoriteitpersoonsgegevens.nl/nl/contact-met-de-autoriteit-persoonsgegevens/tip-ons</a
+        >
+      </p>
+
+      <h2 class="pb-4 fluid-3xl font-mouse">How We Secure Personal Data</h2>
+
+      <p>
+        Magical Events takes the protection of your data seriously and <strong
+          >takes appropriate measures to prevent misuse, loss, unauthorized
+          access, unwanted disclosure, and unauthorized modification</strong
+        >. The accounts in which your data is stored, such as Gmail and
+        OneDrive, are secured with <strong
+          >two-factor authentication (2FA)</strong
+        >. If you have the impression that your data is not properly secured or
+        there are indications of misuse, please contact us via <strong
+          >infomagicalcon@gmail.com</strong
+        >.
+      </p>
+    </div>
+  </Section>
+</Layout>
