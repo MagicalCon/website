@@ -9,7 +9,6 @@ import magicalDisneyMarktLogo from "@/images/magical_disney_markt_logo.svg";
 import EventInfo from "@/components/EventInfo.astro";
 import CosplayerGrid from "@/components/CosplayerGrid.astro";
 import PhotographerGrid from "@/components/PhotographerGrid.astro";
-import { setSiteMode } from "@/lib/site-mode";
 import kinderGrime from "../images/kinder_grime.jpg";
 import blackSwan from "../images/black_swan.jpg";
 import inktherapy from "../images/inktherapy.jpg";
@@ -32,8 +31,6 @@ const FOOD_ITEMS = [
   { icon: "🍝", text: "Pasta" },
   { icon: "🍦", text: "Ice Cream" },
 ];
-
-setSiteMode("disney-markt");
 ---
 
 <Layout

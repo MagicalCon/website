@@ -7,12 +7,9 @@ import { getWrappedSdk } from "@/lib/get-wrapped-sdk";
 import { Image } from "astro:assets";
 import magicalCosplayConLogo from "@/images/magical_cosplay_con_logo.svg";
 import EventInfo from "@/components/EventInfo.astro";
-import { setSiteMode } from "@/lib/site-mode";
 
 const sdk = getWrappedSdk();
 const { data } = await sdk.Layout();
-
-setSiteMode("cosplay-con");
 ---
 
 <Layout

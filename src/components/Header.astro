@@ -1,6 +1,5 @@
 ---
 import HeaderLink from "@/components/HeaderLink.astro";
-import { getSiteMode } from "@/lib/site-mode";
 
 export type HeaderLink = {
   url: string;
@@ -11,19 +10,19 @@ type Props = {
   headerLinks: HeaderLink[];
 };
 
+const { pathname } = Astro.url;
+
 const filteredHeaderLinks = Astro.props.headerLinks.filter((link) => {
-  if (getSiteMode() !== "cosplay-con") {
+  if (!pathname.includes("cosplay-con") && !pathname.includes("FAQ")) {
     return link.text !== "FAQ";
   }
 
   return true;
 });
-
-console.log(getSiteMode());
 ---
 
 <header
-  class="tracking-tight bg-[#fffffe] max-w-3xl w-full rounded-full flex md:fixed mt-5 z-10 items-center"
+  class="tracking-tight bg-[#fffffe] md:max-w-3xl w-full md:rounded-full flex md:fixed md:mt-5 z-10 items-center"
 >
   <div class="hidden md:flex pl-8 h-full">
     <a class="font-mouse fluid-lg" href="/">Magical Events</a>

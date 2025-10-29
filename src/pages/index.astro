@@ -5,12 +5,9 @@ import { getWrappedSdk } from "@/lib/get-wrapped-sdk";
 import { Image } from "astro:assets";
 import magicalCosplayConLogo from "@/images/magical_cosplay_con_logo.svg";
 import magicalDisneyMarktLogo from "@/images/magical_disney_markt_logo.svg";
-import { setSiteMode } from "@/lib/site-mode";
 
 const sdk = getWrappedSdk();
 const { data } = await sdk.Layout();
-
-setSiteMode("");
 ---
 
 <Layout
@@ -19,27 +16,47 @@ setSiteMode("");
   headerLinks={getHeaderLinks(data)}
 >
   <div
-    class="absolute inset-0 z-0 bg-[url(/background.png)] bg-cover bg-no-repeat bg-fixed bg-center text-white h-screen w-screen"
+    class="md:absolute inset-0 z-0 bg-[url(/background.png)] bg-cover bg-no-repeat bg-fixed bg-center text-white h-screen w-screen"
   >
     <div class="place-content-center text-center h-screen">
-      <h1 class="fluid-4xl font-bold">Magical Con</h1>
-      <p class="fluid-lg font-bold">More info coming soon!</p>
       <div class="flex md:flex-row flex-col justify-center items-center">
-        <Image
-          src={magicalCosplayConLogo}
-          height="300"
-          width="480"
-          alt="Magical Cosplay Con logo"
-          class="md:mr-20"
-          widths={[240, 540, 720, magicalCosplayConLogo.width]}
-        />
-        <Image
-          src={magicalDisneyMarktLogo}
-          height="300"
-          width="480"
-          alt="Magical Disney Markt logo"
-          widths={[240, 540, 720, magicalDisneyMarktLogo.width]}
-        />
+        <div class="md:mr-20">
+          <a href="/cosplay-con">
+            <Image
+              src={magicalCosplayConLogo}
+              class="hover:opacity-80 mb-10"
+              height="300"
+              width="480"
+              alt="Magical Cosplay Con logo"
+              widths={[240, 540, 720, magicalCosplayConLogo.width]}
+            />
+          </a>
+          <a
+            href="/cosplay-con"
+            class="bg-gradient-to-r from-blue-800 to-indigo-900 hover:opacity-80 text-white font-bold px-5 py-2.5 rounded-full"
+          >
+            Enter
+          </a>
+        </div>
+
+        <div>
+          <a href="/cosplay-con">
+            <Image
+              src={magicalDisneyMarktLogo}
+              class="hover:opacity-80 mb-10"
+              height="300"
+              width="480"
+              alt="Magical Disney Markt logo"
+              widths={[240, 540, 720, magicalDisneyMarktLogo.width]}
+            />
+          </a>
+          <a
+            href="/cosplay-con"
+            class="bg-gradient-to-r from-blue-800 to-indigo-900 hover:opacity-80 text-white font-bold px-5 py-2.5 rounded-full"
+          >
+            Enter
+          </a>
+        </div>
       </div>
     </div>
   </div>
