@@ -5,9 +5,12 @@ import { getWrappedSdk } from "@/lib/get-wrapped-sdk";
 import { Image } from "astro:assets";
 import magicalCosplayConLogo from "@/images/magical_cosplay_con_logo.svg";
 import magicalDisneyMarktLogo from "@/images/magical_disney_markt_logo.svg";
+import { setSiteMode } from "@/lib/site-mode";
 
 const sdk = getWrappedSdk();
 const { data } = await sdk.Layout();
+
+setSiteMode("");
 ---
 
 <Layout

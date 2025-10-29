@@ -1,5 +1,6 @@
 ---
 import HeaderLink from "@/components/HeaderLink.astro";
+import { getSiteMode } from "@/lib/site-mode";
 
 export type HeaderLink = {
   url: string;
@@ -9,18 +10,28 @@ export type HeaderLink = {
 type Props = {
   headerLinks: HeaderLink[];
 };
+
+const filteredHeaderLinks = Astro.props.headerLinks.filter((link) => {
+  if (getSiteMode() !== "cosplay-con") {
+    return link.text !== "FAQ";
+  }
+
+  return true;
+});
+
+console.log(getSiteMode());
 ---
 
 <header
   class="tracking-tight bg-[#fffffe] max-w-3xl w-full rounded-full flex md:fixed mt-5 z-10 items-center"
 >
   <div class="hidden md:flex pl-8 h-full">
-    <a class="font-mouse fluid-lg" href="/">Cosplay Con</a>
+    <a class="font-mouse fluid-lg" href="/">Magical Events</a>
   </div>
   <nav class="flex py-4 px-4 mx-auto">
     <div class="flex gap-5 text-center">
       {
-        Astro.props.headerLinks.map((link) => (
+        filteredHeaderLinks.map((link) => (
           <HeaderLink href={link.url}>{link.text}</HeaderLink>
         ))
       }

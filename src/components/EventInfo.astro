@@ -3,11 +3,12 @@ import Countdown from "./Countdown.astro";
 
 type Props = {
   target: string;
+  day: string;
   time: string;
   location: string;
 };
 
-const { target, time, location } = Astro.props;
+const { target, day, time, location } = Astro.props;
 ---
 
 <section
@@ -86,15 +87,24 @@ const { target, time, location } = Astro.props;
           >
         </div>
         <div>
-          <p
-            class="font-pj mt-2 text-base font-normal text-gray-800 lg:text-xl"
+          <div
+            class="font-pj mt-2 text-base font-normal text-gray-800 lg:text-xl flex flex-row"
           >
-            🕘 {time}
-          </p>
+            <p>🕘</p>
+            <div>
+              <p>{day}</p>
+              <p>{time}</p>
+            </div>
+          </div>
           <p
             class="font-pj mt-2 text-base font-normal text-gray-800 lg:text-xl"
           >
             📍 {location}
+          </p>
+          <p
+            class="font-pj mt-2 text-base font-normal text-gray-800 lg:text-xl"
+          >
+            🪙 € 1 entry via cash / Payconiq at the entrance
           </p>
           <p
             class="font-pj mt-2 text-base font-normal text-gray-800 lg:text-xl"
