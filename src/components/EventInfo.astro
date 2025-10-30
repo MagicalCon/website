@@ -6,9 +6,10 @@ type Props = {
   day: string;
   time: string;
   location: string;
+  price: string;
 };
 
-const { target, day, time, location } = Astro.props;
+const { target, day, time, location, price } = Astro.props;
 ---
 
 <section
@@ -104,7 +105,7 @@ const { target, day, time, location } = Astro.props;
           <p
             class="font-pj mt-2 text-base font-normal text-gray-800 lg:text-xl"
           >
-            🪙 € 1 entry via cash / Payconiq at the entrance
+            🪙 {price}
           </p>
           <p
             class="font-pj mt-2 text-base font-normal text-gray-800 lg:text-xl"
