@@ -3,12 +3,13 @@ type Props = {
   bgColorClass: string;
   gradientClass: string;
   text: string;
+  class?: string;
 };
 
-const { bgColorClass, gradientClass, text } = Astro.props;
+const { class: className, bgColorClass, gradientClass, text } = Astro.props;
 ---
 
-<div class={bgColorClass}>
+<div class:list={[bgColorClass, className]}>
   <div class="relative isolate px-6 pt-14 lg:px-8">
     <div
       aria-hidden="true"
@@ -23,7 +24,7 @@ const { bgColorClass, gradientClass, text } = Astro.props;
     <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
       <div class="text-center flex flex-col items-center">
         <slot name="logo" />
-        <p class="mt-8 text-lg font-medium text-pretty text-white sm:text-xl/8">
+        <p class="mt-8 text-lg font-medium text-pretty sm:text-xl/8">
           {text}
         </p>
       </div>

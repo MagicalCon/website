@@ -5,6 +5,7 @@ import { getWrappedSdk } from "@/lib/get-wrapped-sdk";
 import { Image } from "astro:assets";
 import magicalCosplayConLogo from "@/images/magical_cosplay_con_logo.svg";
 import magicalDisneyMarktLogo from "@/images/magical_disney_markt_logo.svg";
+import magicalHobbyBeursLogo from "@/images/magical_hobby_beurs_logo.jpg";
 
 const sdk = getWrappedSdk();
 const { data } = await sdk.Layout();
@@ -20,7 +21,7 @@ const { data } = await sdk.Layout();
   >
     <div class="place-content-center text-center h-screen">
       <div class="flex md:flex-row flex-col justify-center items-center">
-        <div class="md:mr-20">
+        <div>
           <a href="/cosplay-con">
             <Image
               src={magicalCosplayConLogo}
@@ -39,7 +40,7 @@ const { data } = await sdk.Layout();
           </a>
         </div>
 
-        <div>
+        <div class="md:mx-20">
           <a href="/cosplay-con">
             <Image
               src={magicalDisneyMarktLogo}
@@ -52,6 +53,25 @@ const { data } = await sdk.Layout();
           </a>
           <a
             href="/disney-markt"
+            class="bg-gradient-to-r from-blue-800 to-indigo-900 hover:opacity-80 text-white font-bold px-5 py-2.5 rounded-full"
+          >
+            Enter
+          </a>
+        </div>
+
+        <div>
+          <a href="/magical-hobby-beurs">
+            <Image
+              src={magicalHobbyBeursLogo}
+              class="hover:opacity-80 mb-10"
+              height="300"
+              width="480"
+              alt="Magical Hobby Beurs Logo"
+              widths={[240, 540, 720, magicalHobbyBeursLogo.width]}
+            />
+          </a>
+          <a
+            href="/magical-hobby-beurs"
             class="bg-gradient-to-r from-blue-800 to-indigo-900 hover:opacity-80 text-white font-bold px-5 py-2.5 rounded-full"
           >
             Enter
