@@ -1,0 +1,31 @@
+---
+import Section from "@/components/Section.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getHeaderLinks } from "@/lib/get-header-links";
+import { getWrappedSdk } from "@/lib/get-wrapped-sdk";
+
+const sdk = getWrappedSdk();
+const { data } = await sdk.Layout();
+---
+
+<Layout
+  title={data.global?.siteName}
+  description={data.global?.siteDescription}
+  headerLinks={getHeaderLinks(data)}
+  class="bg-[#f2f7f5] text-[#00473e]"
+>
+  <Section headingGradientClass="from-[#00473e] to-[#00473e]" title="Thank you">
+    <div slot="content" class="container max-w-5xl mx-auto">
+      <p class="text-[#00473e] text-lg py-7">
+        Thank you for your submission! You will hear from us soon.
+      </p>
+
+      <a
+        href="/"
+        class="bg-[#009380] hover:opacity-90 text-white font-bold py-2 px-4 rounded-lg w-52 h-14"
+      >
+        Back to home
+      </a>
+    </div>
+  </Section>
+</Layout>

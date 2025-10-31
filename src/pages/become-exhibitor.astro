@@ -1,0 +1,288 @@
+---
+export const prerender = false;
+
+import { actions } from "astro:actions";
+import Section from "@/components/Section.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getHeaderLinks } from "@/lib/get-header-links";
+import { getWrappedSdk } from "@/lib/get-wrapped-sdk";
+
+const sdk = getWrappedSdk();
+const { data } = await sdk.Layout();
+const result = Astro.getActionResult(actions.exhibitor.submit);
+---
+
+<Layout
+  title={data.global?.siteName}
+  description={data.global?.siteDescription}
+  headerLinks={getHeaderLinks(data)}
+  class="bg-[#f2f7f5] text-[#00473e]"
+>
+  <Section
+    headingGradientClass="from-[#00473e] to-[#00473e]"
+    title="Become an exhibitor"
+  >
+    <div slot="content" class="container max-w-5xl mx-auto">
+      {
+        result && !result.error ? (
+          <p>
+            Thank you for your submission! We will be in touch with you soon.
+          </p>
+        ) : (
+          <form class="w-full max-w-lg mx-auto px-4 py-7 bg-[#f2f7f5] text-left">
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full px-3">
+                <label
+                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
+                  for="event"
+                >
+                  Event *
+                </label>
+
+                <input
+                  required
+                  id="magical-con"
+                  type="radio"
+                  value="magical-con"
+                  name="event"
+                  class="w-4 h-4 text--[#00473e] bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  for="magical-con"
+                  class="ms-2 text-sm font-medium text-[#00473e] dark:text-gray-300"
+                >
+                  Magical Con
+                </label>
+              </div>
+
+              <div class="w-full px-3">
+                <input
+                  id="disney-markt"
+                  type="radio"
+                  value="disney-markt"
+                  name="event"
+                  class="w-4 h-4 text-[#00473e] bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  for="disney-markt"
+                  class="ms-2 text-sm font-medium text-[#00473e] dark:text-gray-300"
+                >
+                  Magical Disney Markt
+                </label>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full px-3">
+                <label
+                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
+                  for="name"
+                >
+                  Name *
+                </label>
+                <input
+                  name="name"
+                  id="name"
+                  type="text"
+                  placeholder="Name"
+                  required
+                  class="appearance-none block w-full bg-[#fffffe] text-[#00473e] font-bold border rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
+                  for="name"
+                >
+                  Phone *
+                </label>
+                <input
+                  name="phone"
+                  id="phone"
+                  type="tel"
+                  placeholder="Phone"
+                  required
+                  class="appearance-none block w-full bg-[#fffffe] text-[#00473e] font-bold border rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
+                />
+              </div>
+              <div class="w-full md:w-1/2 px-3">
+                <label
+                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
+                  for="phone"
+                >
+                  Email *
+                </label>
+                <input
+                  name="email"
+                  id="email"
+                  type="email"
+                  placeholder="Email"
+                  required
+                  class="appearance-none block w-full bg-[#fffffe] text-[#00473e] font-bold border rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-3 mb-2">
+              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <label
+                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
+                  for="street"
+                >
+                  Street *
+                </label>
+                <input
+                  name="street"
+                  id="street"
+                  type="text"
+                  placeholder="Street"
+                  required
+                  class="appearance-none block w-full bg-[#fffffe] text-[#00473e] font-bold border rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
+                />
+              </div>
+              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <label
+                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
+                  for="zip"
+                >
+                  Postal code *
+                </label>
+                <input
+                  name="zip"
+                  id="zip"
+                  type="text"
+                  placeholder="Postal code"
+                  required
+                  class="appearance-none block w-full bg-[#fffffe] text-[#00473e] font-bold border rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
+                />
+              </div>
+              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <label
+                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
+                  for="city"
+                >
+                  City *
+                </label>
+                <input
+                  name="city"
+                  id="city"
+                  type="text"
+                  placeholder="City"
+                  required
+                  class="appearance-none block w-full bg-[#fffffe] text-[#00473e] font-bold border rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
+                  for="website"
+                >
+                  Website
+                </label>
+                <input
+                  name="website"
+                  id="website"
+                  type="text"
+                  placeholder="Website"
+                  class="appearance-none block w-full bg-[#fffffe] text-[#00473e] font-bold border rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
+                />
+              </div>
+              <div class="w-full md:w-1/2 px-3">
+                <label
+                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
+                  for="Facebook"
+                >
+                  Facebook
+                </label>
+                <input
+                  name="facebook"
+                  id="facebook"
+                  type="text"
+                  placeholder="Facebook"
+                  class="appearance-none block w-full bg-[#fffffe] text-[#00473e] font-bold border rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full px-3">
+                <label
+                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
+                  for="message"
+                >
+                  Message
+                </label>
+                <textarea
+                  name="message"
+                  id="message"
+                  placeholder="Message"
+                  class="appearance-none block w-full bg-[#fffffe] text-[#00473e] font-bold border rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="bg-[#00473e] hover:opacity-90 text-[#f2f7f5] font-bold py-2 px-4 rounded-lg w-full h-14 place-items-center grid"
+            >
+              Submit
+            </button>
+          </form>
+        )
+      }
+    </div>
+  </Section>
+</Layout>
+
+<script>
+  import { isInputError } from "astro:actions";
+  import { actions } from "astro:actions";
+  import { navigate } from "astro:transitions/client";
+
+  const form = document.querySelector("form");
+  const FORM_ERROR_ID = "form-error";
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const { error, data } = await actions.exhibitor.submit(formData);
+
+    // Reset
+    document
+      .querySelectorAll("#" + FORM_ERROR_ID)
+      .forEach((element) => element.remove());
+
+    if (!error && typeof data === "object") {
+      Object.keys(data).forEach((key) => {
+        const input = document.querySelector(`input[name="${key}"]`);
+        input?.classList.remove("border-red-500");
+      });
+    }
+
+    if (isInputError(error)) {
+      return Object.entries(error.fields).forEach(
+        ([fieldName, fieldErrors]) => {
+          const message = fieldErrors.join(", ");
+          const input = document.querySelector(`input[name="${fieldName}"]`);
+          input?.classList.add("border-red-500");
+          const p = document.createElement("p");
+          p.innerText = message;
+          p.classList.add("text-red-500", "text-xs", "italic");
+          p.id = FORM_ERROR_ID;
+          input?.after(p);
+        }
+      );
+    }
+
+    if (!error) {
+      return navigate("/");
+    }
+  });
+</script>
