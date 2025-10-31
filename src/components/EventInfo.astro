@@ -6,14 +6,14 @@ type Props = {
   day: string;
   time: string;
   location: string;
-  price: string;
+  price?: string;
 };
 
 const { target, day, time, location, price } = Astro.props;
 ---
 
 <section
-  class="lg:py-xl bg-[#fffffe] px-5 py-6 sm:py-12 lg:rounded-lg md:mt-[-40px] w-full flex-grow mx-auto lg:max-w-7xl border-solid border-1 border-gray-200"
+  class="lg:py-xl bg-[#fffffe] px-5 py-6 sm:py-12 lg:rounded-lg md:mt-[-40px] w-full flex-grow mx-auto lg:max-w-7xl border-solid border-1 border-gray-200 z-10"
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="md:flex md:items-center md:justify-between md:space-x-16">
@@ -87,31 +87,30 @@ const { target, day, time, location, price } = Astro.props;
             ></line></svg
           >
         </div>
-        <div>
+        <div class="flex gap-2 flex-col">
           <div
-            class="font-pj mt-2 text-base font-normal text-gray-800 lg:text-xl flex flex-row"
+            class="font-pj text-base font-normal text-gray-800 lg:text-xl flex flex-row"
           >
-            <p>🕘</p>
+            <p>🕘 &nbsp;</p>
             <div>
               <p>{day}</p>
               <p>{time}</p>
             </div>
           </div>
-          <p
-            class="font-pj mt-2 text-base font-normal text-gray-800 lg:text-xl"
-          >
+          <p class="font-pj text-base font-normal text-gray-800 lg:text-xl">
             📍 {location}
           </p>
-          <p
-            class="font-pj mt-2 text-base font-normal text-gray-800 lg:text-xl"
-          >
-            🪙 {price}
-          </p>
-          <p
-            class="font-pj mt-2 text-base font-normal text-gray-800 lg:text-xl"
-          >
+          {
+            price && (
+              <p class="font-pj text-base font-normal text-gray-800 lg:text-xl">
+                🪙 {price}
+              </p>
+            )
+          }
+          <p class="font-pj text-base font-normal text-gray-800 lg:text-xl">
             🚘 <span class="underline">Free parking!</span>
           </p>
+          <slot name="cta-button" />
         </div>
       </div>
     </div>
