@@ -16,7 +16,10 @@ type Props = Omit<ComponentProps<typeof SEO>, "extend">;
           content: "width=device-width",
         },
       ],
-      link: [{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
+      link: [
+        { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+        { rel: "sitemap", href: "/sitemap-index.xml" },
+      ],
     }}
     {...Astro.props}
   />
