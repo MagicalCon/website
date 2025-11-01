@@ -21,7 +21,7 @@ type Props = {
                   height={props!.image!.height!}
                   width={props!.image!.width!}
                   src={props!.image!.url}
-                  alt={props!.image!.alternativeText!}
+                  alt={props!.image!.alternativeText ?? props!.name}
                 />
               </div>
             </div>
