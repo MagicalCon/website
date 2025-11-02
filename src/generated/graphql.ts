@@ -1248,7 +1248,7 @@ export const LayoutDocument = `
     `;
 export const CosplayersDocument = `
     query Cosplayers {
-  cosplayers {
+  cosplayers(pagination: {limit: 50}) {
     name
     image {
       alternativeText
