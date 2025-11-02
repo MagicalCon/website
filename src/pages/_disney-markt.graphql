@@ -1,3 +1,15 @@
+query Cosplayers {
+  cosplayers(pagination: { limit: 50 }) {
+    name
+    image {
+      alternativeText
+      url
+      width
+      height
+    }
+  }
+}
+
 query Photographers {
   photographers {
     name

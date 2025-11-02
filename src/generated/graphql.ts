@@ -1358,6 +1358,11 @@ export type LayoutQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type LayoutQuery = { __typename?: 'Query', global?: { __typename?: 'Global', siteName: string, siteDescription: string, header?: { __typename?: 'ComponentLayoutHeader', links?: Array<{ __typename?: 'ComponentTypographyLink', text: string, url: string, isExternal?: boolean | null } | null> | null } | null } | null };
 
+export type CosplayConQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CosplayConQuery = { __typename?: 'Query', cosplayCon?: { __typename?: 'CosplayCon', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string, shareImage?: { __typename?: 'UploadFile', name: string, width?: number | null, height?: number | null, alternativeText?: string | null } | null } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null } | null> | null } | null };
+
 export type CosplayersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1385,6 +1390,26 @@ export const LayoutDocument = `
         url
         isExternal
       }
+    }
+  }
+}
+    `;
+export const CosplayConDocument = `
+    query CosplayCon {
+  cosplayCon {
+    seo {
+      metaTitle
+      metaDescription
+      shareImage {
+        name
+        width
+        height
+        alternativeText
+      }
+    }
+    sections {
+      title
+      subText
     }
   }
 }
@@ -1439,6 +1464,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     Layout(variables?: LayoutQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: LayoutQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<LayoutQuery>(LayoutDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Layout', 'query', variables);
+    },
+    CosplayCon(variables?: CosplayConQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: CosplayConQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<CosplayConQuery>(CosplayConDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'CosplayCon', 'query', variables);
     },
     Cosplayers(variables?: CosplayersQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: CosplayersQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<CosplayersQuery>(CosplayersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Cosplayers', 'query', variables);

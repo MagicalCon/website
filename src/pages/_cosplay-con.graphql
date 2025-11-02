@@ -1,11 +1,18 @@
-query Cosplayers {
-  cosplayers(pagination: { limit: 50 }) {
-    name
-    image {
-      alternativeText
-      url
-      width
-      height
+query CosplayCon {
+  cosplayCon {
+    seo {
+      metaTitle
+      metaDescription
+      shareImage {
+        name
+        width
+        height
+        alternativeText
+      }
+    }
+    sections {
+      title
+      subText
     }
   }
 }

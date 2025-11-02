@@ -10,11 +10,14 @@ import EventInfo from "@/components/EventInfo.astro";
 
 const sdk = getWrappedSdk();
 const { data } = await sdk.Layout();
+const {
+  data: { cosplayCon },
+} = await sdk.CosplayCon();
 ---
 
 <Layout
-  title={data.global?.siteName}
-  description={data.global?.siteDescription}
+  title={cosplayCon!.seo!.metaTitle}
+  description={cosplayCon!.seo!.metaDescription}
   headerLinks={getHeaderLinks(data)}
   class="bg-fuchsia-200"
 >
@@ -48,18 +51,14 @@ const { data } = await sdk.Layout();
       Buy ticket
     </a>
   </EventInfo>
-  <Section
-    headingGradientClass="from-[#232946] to-indigo-600"
-    title="Catwalk Contest"
-    subText="Sign up at BeCosplay's stand"
-  />
-  <Section
-    headingGradientClass="from-[#232946] to-indigo-600"
-    title="Lip Sync Battle Contest"
-    class="bg-white"
-  />
-  <Section
-    headingGradientClass="from-[#232946] to-indigo-600"
-    title="Workshop"
-  />
+  {
+    cosplayCon?.sections?.map((section, i) => (
+      <Section
+        headingGradientClass="from-[#232946] to-indigo-600"
+        title={section!.title}
+        subText={section!.subText!}
+        {...(i % 2 !== 0 && { class: "bg-white" })}
+      />
+    ))
+  }
 </Layout>
