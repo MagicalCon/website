@@ -1,6 +1,6 @@
 query Faq {
   faq {
-    accordion {
+    accordions {
       name
       content
     }

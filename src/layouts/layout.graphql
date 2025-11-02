@@ -3,7 +3,7 @@ query Layout {
     siteName
     siteDescription
     header {
-      link {
+      links {
         text
         url
         isExternal

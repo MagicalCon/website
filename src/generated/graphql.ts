@@ -98,11 +98,11 @@ export type ComponentLayoutFooterInput = {
 export type ComponentLayoutHeader = {
   __typename?: 'ComponentLayoutHeader';
   id: Scalars['ID']['output'];
-  link?: Maybe<Array<Maybe<ComponentTypographyLink>>>;
+  links?: Maybe<Array<Maybe<ComponentTypographyLink>>>;
 };
 
 
-export type ComponentLayoutHeaderLinkArgs = {
+export type ComponentLayoutHeaderLinksArgs = {
   filters?: InputMaybe<ComponentTypographyLinkFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -110,7 +110,45 @@ export type ComponentLayoutHeaderLinkArgs = {
 
 export type ComponentLayoutHeaderInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
-  link?: InputMaybe<Array<InputMaybe<ComponentTypographyLinkInput>>>;
+  links?: InputMaybe<Array<InputMaybe<ComponentTypographyLinkInput>>>;
+};
+
+export type ComponentLayoutSection = {
+  __typename?: 'ComponentLayoutSection';
+  Images: Array<Maybe<UploadFile>>;
+  Images_connection?: Maybe<UploadFileRelationResponseCollection>;
+  id: Scalars['ID']['output'];
+  subText?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+};
+
+
+export type ComponentLayoutSectionImagesArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type ComponentLayoutSectionImages_ConnectionArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ComponentLayoutSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentLayoutSectionFiltersInput>>>;
+  not?: InputMaybe<ComponentLayoutSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentLayoutSectionFiltersInput>>>;
+  subText?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentLayoutSectionInput = {
+  Images?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  subText?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ComponentSharedSeo = {
@@ -150,6 +188,29 @@ export type ComponentTypographyLinkInput = {
   isExternal?: InputMaybe<Scalars['Boolean']['input']>;
   text?: InputMaybe<Scalars['String']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CosplayCon = {
+  __typename?: 'CosplayCon';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  sections?: Maybe<Array<Maybe<ComponentLayoutSection>>>;
+  seo?: Maybe<ComponentSharedSeo>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type CosplayConSectionsArgs = {
+  filters?: InputMaybe<ComponentLayoutSectionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type CosplayConInput = {
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  sections?: InputMaybe<Array<InputMaybe<ComponentLayoutSectionInput>>>;
+  seo?: InputMaybe<ComponentSharedSeoInput>;
 };
 
 export type Cosplayer = {
@@ -217,23 +278,25 @@ export type DeleteMutationResponse = {
 
 export type Faq = {
   __typename?: 'Faq';
-  accordion?: Maybe<Array<Maybe<ComponentDisclosureAccordion>>>;
+  accordions?: Maybe<Array<Maybe<ComponentDisclosureAccordion>>>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   documentId: Scalars['ID']['output'];
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  seo?: Maybe<ComponentSharedSeo>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 
-export type FaqAccordionArgs = {
+export type FaqAccordionsArgs = {
   filters?: InputMaybe<ComponentDisclosureAccordionFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type FaqInput = {
-  accordion?: InputMaybe<Array<InputMaybe<ComponentDisclosureAccordionInput>>>;
+  accordions?: InputMaybe<Array<InputMaybe<ComponentDisclosureAccordionInput>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  seo?: InputMaybe<ComponentSharedSeoInput>;
 };
 
 export type FileInfoInput = {
@@ -267,7 +330,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = ComponentDataDisplayPersona | ComponentDisclosureAccordion | ComponentLayoutFooter | ComponentLayoutHeader | ComponentSharedSeo | ComponentTypographyLink | Cosplayer | Faq | Global | I18NLocale | Photographer | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentDataDisplayPersona | ComponentDisclosureAccordion | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutSection | ComponentSharedSeo | ComponentTypographyLink | CosplayCon | Cosplayer | Faq | Global | I18NLocale | Photographer | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Global = {
   __typename?: 'Global';
@@ -408,6 +471,7 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteCosplayCon?: Maybe<DeleteMutationResponse>;
   deleteCosplayer?: Maybe<DeleteMutationResponse>;
   deleteFaq?: Maybe<DeleteMutationResponse>;
   deleteGlobal?: Maybe<DeleteMutationResponse>;
@@ -428,6 +492,7 @@ export type Mutation = {
   register: UsersPermissionsLoginPayload;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateCosplayCon?: Maybe<CosplayCon>;
   updateCosplayer?: Maybe<Cosplayer>;
   updateFaq?: Maybe<Faq>;
   updateGlobal?: Maybe<Global>;
@@ -542,6 +607,12 @@ export type MutationResetPasswordArgs = {
   code: Scalars['String']['input'];
   password: Scalars['String']['input'];
   passwordConfirmation: Scalars['String']['input'];
+};
+
+
+export type MutationUpdateCosplayConArgs = {
+  data: CosplayConInput;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
@@ -667,6 +738,7 @@ export enum PublicationStatus {
 
 export type Query = {
   __typename?: 'Query';
+  cosplayCon?: Maybe<CosplayCon>;
   cosplayer?: Maybe<Cosplayer>;
   cosplayers: Array<Maybe<Cosplayer>>;
   cosplayers_connection?: Maybe<CosplayerEntityResponseCollection>;
@@ -694,6 +766,11 @@ export type Query = {
   usersPermissionsUser?: Maybe<UsersPermissionsUser>;
   usersPermissionsUsers: Array<Maybe<UsersPermissionsUser>>;
   usersPermissionsUsers_connection?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+};
+
+
+export type QueryCosplayConArgs = {
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
@@ -1057,6 +1134,11 @@ export type UploadFileFiltersInput = {
   width?: InputMaybe<IntFilterInput>;
 };
 
+export type UploadFileRelationResponseCollection = {
+  __typename?: 'UploadFileRelationResponseCollection';
+  nodes: Array<UploadFile>;
+};
+
 export type UsersPermissionsCreateRolePayload = {
   __typename?: 'UsersPermissionsCreateRolePayload';
   ok: Scalars['Boolean']['output'];
@@ -1274,7 +1356,7 @@ export type UsersPermissionsUserRelationResponseCollection = {
 export type LayoutQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type LayoutQuery = { __typename?: 'Query', global?: { __typename?: 'Global', siteName: string, siteDescription: string, header?: { __typename?: 'ComponentLayoutHeader', link?: Array<{ __typename?: 'ComponentTypographyLink', text: string, url: string, isExternal?: boolean | null } | null> | null } | null } | null };
+export type LayoutQuery = { __typename?: 'Query', global?: { __typename?: 'Global', siteName: string, siteDescription: string, header?: { __typename?: 'ComponentLayoutHeader', links?: Array<{ __typename?: 'ComponentTypographyLink', text: string, url: string, isExternal?: boolean | null } | null> | null } | null } | null };
 
 export type CosplayersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1289,7 +1371,7 @@ export type PhotographersQuery = { __typename?: 'Query', photographers: Array<{ 
 export type FaqQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type FaqQuery = { __typename?: 'Query', faq?: { __typename?: 'Faq', accordion?: Array<{ __typename?: 'ComponentDisclosureAccordion', name: string, content: string } | null> | null } | null };
+export type FaqQuery = { __typename?: 'Query', faq?: { __typename?: 'Faq', accordions?: Array<{ __typename?: 'ComponentDisclosureAccordion', name: string, content: string } | null> | null } | null };
 
 
 export const LayoutDocument = `
@@ -1298,7 +1380,7 @@ export const LayoutDocument = `
     siteName
     siteDescription
     header {
-      link {
+      links {
         text
         url
         isExternal
@@ -1340,7 +1422,7 @@ export const PhotographersDocument = `
 export const FaqDocument = `
     query Faq {
   faq {
-    accordion {
+    accordions {
       name
       content
     }
