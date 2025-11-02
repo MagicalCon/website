@@ -41,8 +41,8 @@ export const exhibitor = {
               input.name
             }, ze hebben deze info achter gelaten:</h1>
             <p>Event: ${
-              input.event === "magical-con"
-                ? "Magical Con"
+              input.event === "magical-cosplay-con"
+                ? "Magical Cosplay Con"
                 : "Magical Disney Markt"
             }</p>
             <p>📞: ${input.phone}</p>

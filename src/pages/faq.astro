@@ -1,0 +1,20 @@
+---
+import Section from "@/components/Section.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getHeaderLinks } from "@/lib/get-header-links";
+import { getWrappedSdk } from "@/lib/get-wrapped-sdk";
+
+const sdk = getWrappedSdk();
+const { data } = await sdk.Layout();
+---
+
+<Layout
+  title={data.global?.siteName}
+  description={data.global?.siteDescription}
+  headerLinks={getHeaderLinks(data)}
+  class="bg-[#f2f7f5] text-[#00473e]"
+>
+  <Section headingGradientClass="from-[#00473e] to-[#00473e]" title="FAQ">
+    <div slot="content" class="container max-w-5xl mx-auto"></div>
+  </Section>
+</Layout>
