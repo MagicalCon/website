@@ -6,6 +6,9 @@ import { getWrappedSdk } from "@/lib/get-wrapped-sdk";
 
 const sdk = getWrappedSdk();
 const { data } = await sdk.Layout();
+const {
+  data: { faq },
+} = await sdk.Faq();
 ---
 
 <Layout
@@ -15,6 +18,33 @@ const { data } = await sdk.Layout();
   class="bg-[#f2f7f5] text-[#00473e]"
 >
   <Section headingGradientClass="from-[#00473e] to-[#00473e]" title="FAQ">
-    <div slot="content" class="container max-w-5xl mx-auto"></div>
+    <div slot="content" class="container max-w-5xl mx-auto">
+      {
+        faq!.accordion!.map((item) => (
+          <details class="border-2 border-[#00473e] p-4 open:[&_svg]:-rotate-180 text-left mb-4">
+            <summary class="flex cursor-pointer list-none items-center gap-4">
+              <div>
+                <svg
+                  class="rotate-0 transform text-[#00473e] transition-all duration-300"
+                  fill="none"
+                  height="20"
+                  width="20"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </div>
+              <div class="font-bold">{item!.name}</div>
+            </summary>
+
+            <p>{item!.content}</p>
+          </details>
+        ))
+      }
+    </div>
   </Section>
 </Layout>

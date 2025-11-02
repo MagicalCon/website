@@ -1,0 +1,8 @@
+query Faq {
+  faq {
+    accordion {
+      name
+      content
+    }
+  }
+}

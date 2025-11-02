@@ -65,6 +65,27 @@ export type ComponentDataDisplayPersonaInput = {
   platform?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type ComponentDisclosureAccordion = {
+  __typename?: 'ComponentDisclosureAccordion';
+  content: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+};
+
+export type ComponentDisclosureAccordionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentDisclosureAccordionFiltersInput>>>;
+  content?: InputMaybe<StringFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentDisclosureAccordionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentDisclosureAccordionFiltersInput>>>;
+};
+
+export type ComponentDisclosureAccordionInput = {
+  content?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type ComponentLayoutFooter = {
   __typename?: 'ComponentLayoutFooter';
   id: Scalars['ID']['output'];
@@ -194,6 +215,27 @@ export type DeleteMutationResponse = {
   documentId: Scalars['ID']['output'];
 };
 
+export type Faq = {
+  __typename?: 'Faq';
+  accordion?: Maybe<Array<Maybe<ComponentDisclosureAccordion>>>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type FaqAccordionArgs = {
+  filters?: InputMaybe<ComponentDisclosureAccordionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type FaqInput = {
+  accordion?: InputMaybe<Array<InputMaybe<ComponentDisclosureAccordionInput>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
 export type FileInfoInput = {
   alternativeText?: InputMaybe<Scalars['String']['input']>;
   caption?: InputMaybe<Scalars['String']['input']>;
@@ -225,7 +267,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = ComponentDataDisplayPersona | ComponentLayoutFooter | ComponentLayoutHeader | ComponentSharedSeo | ComponentTypographyLink | Cosplayer | Global | I18NLocale | Photographer | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentDataDisplayPersona | ComponentDisclosureAccordion | ComponentLayoutFooter | ComponentLayoutHeader | ComponentSharedSeo | ComponentTypographyLink | Cosplayer | Faq | Global | I18NLocale | Photographer | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Global = {
   __typename?: 'Global';
@@ -367,6 +409,7 @@ export type Mutation = {
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteCosplayer?: Maybe<DeleteMutationResponse>;
+  deleteFaq?: Maybe<DeleteMutationResponse>;
   deleteGlobal?: Maybe<DeleteMutationResponse>;
   deletePhotographer?: Maybe<DeleteMutationResponse>;
   deleteReviewWorkflowsWorkflow?: Maybe<DeleteMutationResponse>;
@@ -386,6 +429,7 @@ export type Mutation = {
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateCosplayer?: Maybe<Cosplayer>;
+  updateFaq?: Maybe<Faq>;
   updateGlobal?: Maybe<Global>;
   updatePhotographer?: Maybe<Photographer>;
   updateReviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
@@ -508,6 +552,12 @@ export type MutationUpdateCosplayerArgs = {
 };
 
 
+export type MutationUpdateFaqArgs = {
+  data: FaqInput;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
 export type MutationUpdateGlobalArgs = {
   data: GlobalInput;
   status?: InputMaybe<PublicationStatus>;
@@ -620,6 +670,7 @@ export type Query = {
   cosplayer?: Maybe<Cosplayer>;
   cosplayers: Array<Maybe<Cosplayer>>;
   cosplayers_connection?: Maybe<CosplayerEntityResponseCollection>;
+  faq?: Maybe<Faq>;
   global?: Maybe<Global>;
   i18NLocale?: Maybe<I18NLocale>;
   i18NLocales: Array<Maybe<I18NLocale>>;
@@ -664,6 +715,11 @@ export type QueryCosplayers_ConnectionArgs = {
   filters?: InputMaybe<CosplayerFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryFaqArgs = {
   status?: InputMaybe<PublicationStatus>;
 };
 
@@ -1230,6 +1286,11 @@ export type PhotographersQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type PhotographersQuery = { __typename?: 'Query', photographers: Array<{ __typename?: 'Photographer', name: string, image: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, url: string }, social: Array<{ __typename?: 'ComponentDataDisplayPersona', platform: string, handle: string } | null> } | null> };
 
+export type FaqQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FaqQuery = { __typename?: 'Query', faq?: { __typename?: 'Faq', accordion?: Array<{ __typename?: 'ComponentDisclosureAccordion', name: string, content: string } | null> | null } | null };
+
 
 export const LayoutDocument = `
     query Layout {
@@ -1276,6 +1337,16 @@ export const PhotographersDocument = `
   }
 }
     `;
+export const FaqDocument = `
+    query Faq {
+  faq {
+    accordion {
+      name
+      content
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -1292,6 +1363,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     Photographers(variables?: PhotographersQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: PhotographersQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<PhotographersQuery>(PhotographersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Photographers', 'query', variables);
+    },
+    Faq(variables?: FaqQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: FaqQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<FaqQuery>(FaqDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Faq', 'query', variables);
     }
   };
 }
