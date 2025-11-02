@@ -6,6 +6,7 @@ import { getHeaderLinks } from "@/lib/get-header-links";
 import { getWrappedSdk } from "@/lib/get-wrapped-sdk";
 import magicalHobbyBeursLogo from "@/images/magical_hobby_beurs_logo.jpg";
 import { Image } from "astro:assets";
+import Section from "@/components/Section.astro";
 
 const sdk = getWrappedSdk();
 const { data } = await sdk.Layout();
@@ -31,4 +32,14 @@ const { data } = await sdk.Layout();
       widths={[240, 540, 720, magicalHobbyBeursLogo.width]}
     />
   </Hero>
+  <EventInfo
+    target="19 April 2026 12:00:00"
+    day="19 April 2026"
+    time="12:00 - 17:00"
+    location="Belgium - GC Klein Boom, Mechelbaan 604, 2580 Putte"
+  />
+  <Section
+    headingGradientClass="from-[#232946] to-indigo-600"
+    title="More info coming"
+  />
 </Layout>
