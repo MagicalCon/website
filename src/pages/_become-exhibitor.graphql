@@ -1,0 +1,9 @@
+query Exhibitor {
+  exhibitor {
+    seo {
+      metaTitle
+      metaDescription
+    }
+    info
+  }
+}

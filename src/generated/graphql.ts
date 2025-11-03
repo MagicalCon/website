@@ -276,6 +276,22 @@ export type DeleteMutationResponse = {
   documentId: Scalars['ID']['output'];
 };
 
+export type Exhibitor = {
+  __typename?: 'Exhibitor';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  info?: Maybe<Scalars['String']['output']>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  seo?: Maybe<ComponentSharedSeo>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type ExhibitorInput = {
+  info?: InputMaybe<Scalars['String']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  seo?: InputMaybe<ComponentSharedSeoInput>;
+};
+
 export type Faq = {
   __typename?: 'Faq';
   accordions?: Maybe<Array<Maybe<ComponentDisclosureAccordion>>>;
@@ -330,7 +346,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = ComponentDataDisplayPersona | ComponentDisclosureAccordion | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutSection | ComponentSharedSeo | ComponentTypographyLink | CosplayCon | Cosplayer | Faq | Global | I18NLocale | Photographer | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentDataDisplayPersona | ComponentDisclosureAccordion | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutSection | ComponentSharedSeo | ComponentTypographyLink | CosplayCon | Cosplayer | Exhibitor | Faq | Global | I18NLocale | Photographer | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Global = {
   __typename?: 'Global';
@@ -473,6 +489,7 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteCosplayCon?: Maybe<DeleteMutationResponse>;
   deleteCosplayer?: Maybe<DeleteMutationResponse>;
+  deleteExhibitor?: Maybe<DeleteMutationResponse>;
   deleteFaq?: Maybe<DeleteMutationResponse>;
   deleteGlobal?: Maybe<DeleteMutationResponse>;
   deletePhotographer?: Maybe<DeleteMutationResponse>;
@@ -494,6 +511,7 @@ export type Mutation = {
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateCosplayCon?: Maybe<CosplayCon>;
   updateCosplayer?: Maybe<Cosplayer>;
+  updateExhibitor?: Maybe<Exhibitor>;
   updateFaq?: Maybe<Faq>;
   updateGlobal?: Maybe<Global>;
   updatePhotographer?: Maybe<Photographer>;
@@ -623,6 +641,12 @@ export type MutationUpdateCosplayerArgs = {
 };
 
 
+export type MutationUpdateExhibitorArgs = {
+  data: ExhibitorInput;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
 export type MutationUpdateFaqArgs = {
   data: FaqInput;
   status?: InputMaybe<PublicationStatus>;
@@ -742,6 +766,7 @@ export type Query = {
   cosplayer?: Maybe<Cosplayer>;
   cosplayers: Array<Maybe<Cosplayer>>;
   cosplayers_connection?: Maybe<CosplayerEntityResponseCollection>;
+  exhibitor?: Maybe<Exhibitor>;
   faq?: Maybe<Faq>;
   global?: Maybe<Global>;
   i18NLocale?: Maybe<I18NLocale>;
@@ -792,6 +817,11 @@ export type QueryCosplayers_ConnectionArgs = {
   filters?: InputMaybe<CosplayerFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryExhibitorArgs = {
   status?: InputMaybe<PublicationStatus>;
 };
 
@@ -1358,6 +1388,11 @@ export type LayoutQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type LayoutQuery = { __typename?: 'Query', global?: { __typename?: 'Global', siteName: string, siteDescription: string, header?: { __typename?: 'ComponentLayoutHeader', links?: Array<{ __typename?: 'ComponentTypographyLink', text: string, url: string, isExternal?: boolean | null } | null> | null } | null } | null };
 
+export type ExhibitorQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ExhibitorQuery = { __typename?: 'Query', exhibitor?: { __typename?: 'Exhibitor', info?: string | null, seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string } | null } | null };
+
 export type CosplayConQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1391,6 +1426,17 @@ export const LayoutDocument = `
         isExternal
       }
     }
+  }
+}
+    `;
+export const ExhibitorDocument = `
+    query Exhibitor {
+  exhibitor {
+    seo {
+      metaTitle
+      metaDescription
+    }
+    info
   }
 }
     `;
@@ -1464,6 +1510,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     Layout(variables?: LayoutQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: LayoutQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<LayoutQuery>(LayoutDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Layout', 'query', variables);
+    },
+    Exhibitor(variables?: ExhibitorQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: ExhibitorQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<ExhibitorQuery>(ExhibitorDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Exhibitor', 'query', variables);
     },
     CosplayCon(variables?: CosplayConQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: CosplayConQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<CosplayConQuery>(CosplayConDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'CosplayCon', 'query', variables);

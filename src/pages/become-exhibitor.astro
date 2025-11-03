@@ -9,12 +9,15 @@ import { getWrappedSdk } from "@/lib/get-wrapped-sdk";
 
 const sdk = getWrappedSdk();
 const { data } = await sdk.Layout();
+const {
+  data: { exhibitor },
+} = await sdk.Exhibitor();
 const result = Astro.getActionResult(actions.exhibitor.submit);
 ---
 
 <Layout
-  title={data.global?.siteName}
-  description={data.global?.siteDescription}
+  title={exhibitor!.seo!.metaTitle}
+  description={exhibitor!.seo!.metaDescription}
   headerLinks={getHeaderLinks(data)}
   class="bg-[#f2f7f5] text-[#00473e]"
 >
@@ -23,6 +26,7 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
     title="Become an exhibitor"
   >
     <div slot="content" class="container max-w-5xl mx-auto">
+      <p>{exhibitor!.info}</p>
       {
         result && !result.error ? (
           <p>
