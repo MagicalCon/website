@@ -1,4 +1,6 @@
 ---
+export const prerender = false;
+
 import Hero from "@/components/Hero.astro";
 import Section from "@/components/Section.astro";
 import Layout from "@/layouts/Layout.astro";
@@ -31,6 +33,11 @@ const FOOD_ITEMS = [
   { icon: "🍝", text: "Pasta" },
   { icon: "🍦", text: "Ice Cream" },
 ];
+
+Astro.response.headers.set(
+  "Cache-Control",
+  "public, max-age=1800, s-maxage=1800"
+);
 ---
 
 <Layout
@@ -114,10 +121,6 @@ const FOOD_ITEMS = [
     subText="BlackSwan Tattoo & Inktherapy will be present to create your next beautiful tattoo!"
     class="bg-white"
   >
-    <p class="text-[#00473e] text-lg py-7">
-      BlackSwan Tattoo & Inktherapy zullen aanwezig zijn voor het zetten van
-      mooie tattoo's!
-    </p>
     <div
       slot="content"
       class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"

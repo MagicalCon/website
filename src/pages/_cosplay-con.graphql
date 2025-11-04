@@ -13,6 +13,13 @@ query CosplayCon {
     sections {
       title
       subText
+      Images {
+        name
+        alternativeText
+        url
+        width
+        height
+      }
     }
   }
 }

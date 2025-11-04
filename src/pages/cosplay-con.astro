@@ -1,4 +1,6 @@
 ---
+export const prerender = false;
+
 import Hero from "@/components/Hero.astro";
 import Section from "@/components/Section.astro";
 import Layout from "@/layouts/Layout.astro";
@@ -13,6 +15,11 @@ const { data } = await sdk.Layout();
 const {
   data: { cosplayCon },
 } = await sdk.CosplayCon();
+
+Astro.response.headers.set(
+  "Cache-Control",
+  "public, max-age=1800, s-maxage=1800"
+);
 ---
 
 <Layout
@@ -58,7 +65,27 @@ const {
         title={section!.title}
         subText={section!.subText!}
         {...(i % 2 !== 0 && { class: "bg-white" })}
-      />
+      >
+        {section!.Images.length ? (
+          <div
+            slot="content"
+            class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"
+          >
+            <div class="flex gap-10 flex-col md:flex-row">
+              {section!.Images.map((image) => (
+                <Image
+                  src={image!.url}
+                  alt={image?.alternativeText ?? image!.name}
+                  quality={90}
+                  width={image!.width!}
+                  height={image!.height!}
+                  class="rounded-lg max-w-96"
+                />
+              ))}
+            </div>
+          </div>
+        ) : null}
+      </Section>
     ))
   }
 </Layout>

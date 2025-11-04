@@ -1396,7 +1396,7 @@ export type ExhibitorQuery = { __typename?: 'Query', exhibitor?: { __typename?: 
 export type CosplayConQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CosplayConQuery = { __typename?: 'Query', cosplayCon?: { __typename?: 'CosplayCon', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string, shareImage?: { __typename?: 'UploadFile', name: string, width?: number | null, height?: number | null, alternativeText?: string | null } | null } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null } | null> | null } | null };
+export type CosplayConQuery = { __typename?: 'Query', cosplayCon?: { __typename?: 'CosplayCon', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string, shareImage?: { __typename?: 'UploadFile', name: string, width?: number | null, height?: number | null, alternativeText?: string | null } | null } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, Images: Array<{ __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string, width?: number | null, height?: number | null } | null> } | null> | null } | null };
 
 export type CosplayersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1456,6 +1456,13 @@ export const CosplayConDocument = `
     sections {
       title
       subText
+      Images {
+        name
+        alternativeText
+        url
+        width
+        height
+      }
     }
   }
 }
