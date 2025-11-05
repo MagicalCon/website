@@ -4,6 +4,12 @@ import { Resend } from "resend";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
+const EVENT_MAPPING = {
+  "magical-cosplay-con": "Magical Cosplay Con",
+  "disney-markt": "Magical Disney Markt",
+  "hobby-con": "Magical Hobby Beurs",
+};
+
 export const exhibitor = {
   submit: defineAction({
     accept: "form",
@@ -41,9 +47,7 @@ export const exhibitor = {
               input.name
             }, ze hebben deze info achter gelaten:</h1>
             <p>Event: ${
-              input.event === "magical-cosplay-con"
-                ? "Magical Cosplay Con"
-                : "Magical Disney Markt"
+              EVENT_MAPPING[input.event as keyof typeof EVENT_MAPPING]
             }</p>
             <p>📞: ${input.phone}</p>
             <p>✉️: ${input.email}</p>

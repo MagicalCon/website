@@ -53,7 +53,7 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
                 />
                 <label
                   for="magical-cosplay-con"
-                  class="ms-2 text-sm font-medium text-[#00473e] dark:text-gray-300"
+                  class="ms-2 text-sm font-medium text-[#00473e]"
                 >
                   Magical Cosplay Con
                 </label>
@@ -69,9 +69,25 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
                 />
                 <label
                   for="disney-markt"
-                  class="ms-2 text-sm font-medium text-[#00473e] dark:text-gray-300"
+                  class="ms-2 text-sm font-medium text-[#00473e]"
                 >
                   Magical Disney Markt
+                </label>
+              </div>
+
+              <div class="w-full px-3">
+                <input
+                  id="hobby-con"
+                  type="radio"
+                  value="hobby-con"
+                  name="event"
+                  class="w-4 h-4 text-[#00473e] bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  for="hobby-con"
+                  class="ms-2 text-sm font-medium text-[#00473e]"
+                >
+                  Magical Hobby Beurs
                 </label>
               </div>
             </div>
