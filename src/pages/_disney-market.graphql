@@ -1,3 +1,23 @@
+query DisneyMarket {
+  disneyMarket {
+    seo {
+      metaTitle
+      metaDescription
+    }
+    sections {
+      title
+      subText
+      Images {
+        alternativeText
+        height
+        width
+        url
+        name
+      }
+    }
+  }
+}
+
 query Cosplayers {
   cosplayers(pagination: { limit: 50 }) {
     name

@@ -19,6 +19,9 @@ import workshop from "../images/workshop.jpg";
 const sdk = getWrappedSdk();
 const { data } = await sdk.Layout();
 const {
+  data: { disneyMarket },
+} = await sdk.DisneyMarket();
+const {
   data: { cosplayers },
 } = await sdk.Cosplayers();
 const {
@@ -41,8 +44,8 @@ Astro.response.headers.set(
 ---
 
 <Layout
-  title={data.global?.siteName}
-  description={data.global?.siteDescription}
+  title={disneyMarket!.seo!.metaTitle}
+  description={disneyMarket!.seo!.metaDescription}
   headerLinks={getHeaderLinks(data)}
   class="bg-amber-300"
 >
@@ -98,69 +101,38 @@ Astro.response.headers.set(
       <CosplayerGrid cosplayers={cosplayers} />
     </div>
   </Section>
-  <Section
-    headingGradientClass="from-cyan-500 to-blue-500"
-    title="Grime For Children"
-  >
-    <div
-      slot="content"
-      class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"
-    >
-      <Image
-        src={kinderGrime}
-        alt="Grime for children"
-        quality={90}
-        width={450}
-        class="rounded-lg py-7"
-      />
-    </div>
-  </Section>
-  <Section
-    headingGradientClass="from-cyan-500 to-blue-500"
-    title="Tattoo Shop"
-    subText="BlackSwan Tattoo & Inktherapy will be present to create your next beautiful tattoo!"
-    class="bg-white"
-  >
-    <div
-      slot="content"
-      class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"
-    >
-      <div class="flex gap-10 flex-col md:flex-row">
-        <Image
-          src={blackSwan}
-          alt="BlackSwan tattoo"
-          quality={90}
-          width={400}
-          class="rounded-lg"
-        />
-        <Image
-          src={inktherapy}
-          alt="Inktherapy tattoo"
-          quality={90}
-          width={400}
-          class="rounded-lg"
-        />
-      </div>
-    </div>
-  </Section>
-  <Section
-    headingGradientClass="from-cyan-500 to-blue-500"
-    title="Workshop"
-    subText="Create your own Disney ears and hats"
-  >
-    <div
-      slot="content"
-      class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"
-    >
-      <Image
-        src={workshop}
-        quality={90}
-        alt="Workshop"
-        width={450}
-        class="rounded-lg py-7"
-      />
-    </div>
-  </Section>
+
+  {
+    disneyMarket?.sections?.map((section, i) => (
+      <Section
+        headingGradientClass="from-cyan-500 to-blue-500"
+        title={section!.title}
+        subText={section!.subText!}
+        {...(i % 2 !== 0 && { class: "bg-white" })}
+      >
+        {section!.Images.length ? (
+          <div
+            slot="content"
+            class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"
+          >
+            <div class="flex gap-10 flex-col md:flex-row">
+              {section!.Images.map((image) => (
+                <Image
+                  src={image!.url}
+                  alt={image?.alternativeText ?? image!.name}
+                  quality={90}
+                  width={image!.width!}
+                  height={image!.height!}
+                  class="rounded-lg max-w-96"
+                />
+              ))}
+            </div>
+          </div>
+        ) : null}
+      </Section>
+    ))
+  }
+
   <Section
     headingGradientClass="from-cyan-500 to-blue-500"
     title="Photographers"

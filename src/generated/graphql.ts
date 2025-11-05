@@ -276,6 +276,29 @@ export type DeleteMutationResponse = {
   documentId: Scalars['ID']['output'];
 };
 
+export type DisneyMarket = {
+  __typename?: 'DisneyMarket';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  sections?: Maybe<Array<Maybe<ComponentLayoutSection>>>;
+  seo?: Maybe<ComponentSharedSeo>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type DisneyMarketSectionsArgs = {
+  filters?: InputMaybe<ComponentLayoutSectionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type DisneyMarketInput = {
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  sections?: InputMaybe<Array<InputMaybe<ComponentLayoutSectionInput>>>;
+  seo?: InputMaybe<ComponentSharedSeoInput>;
+};
+
 export type Exhibitor = {
   __typename?: 'Exhibitor';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
@@ -346,7 +369,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = ComponentDataDisplayPersona | ComponentDisclosureAccordion | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutSection | ComponentSharedSeo | ComponentTypographyLink | CosplayCon | Cosplayer | Exhibitor | Faq | Global | I18NLocale | Photographer | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentDataDisplayPersona | ComponentDisclosureAccordion | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutSection | ComponentSharedSeo | ComponentTypographyLink | CosplayCon | Cosplayer | DisneyMarket | Exhibitor | Faq | Global | I18NLocale | Photographer | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Global = {
   __typename?: 'Global';
@@ -489,6 +512,7 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteCosplayCon?: Maybe<DeleteMutationResponse>;
   deleteCosplayer?: Maybe<DeleteMutationResponse>;
+  deleteDisneyMarket?: Maybe<DeleteMutationResponse>;
   deleteExhibitor?: Maybe<DeleteMutationResponse>;
   deleteFaq?: Maybe<DeleteMutationResponse>;
   deleteGlobal?: Maybe<DeleteMutationResponse>;
@@ -511,6 +535,7 @@ export type Mutation = {
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateCosplayCon?: Maybe<CosplayCon>;
   updateCosplayer?: Maybe<Cosplayer>;
+  updateDisneyMarket?: Maybe<DisneyMarket>;
   updateExhibitor?: Maybe<Exhibitor>;
   updateFaq?: Maybe<Faq>;
   updateGlobal?: Maybe<Global>;
@@ -641,6 +666,12 @@ export type MutationUpdateCosplayerArgs = {
 };
 
 
+export type MutationUpdateDisneyMarketArgs = {
+  data: DisneyMarketInput;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
 export type MutationUpdateExhibitorArgs = {
   data: ExhibitorInput;
   status?: InputMaybe<PublicationStatus>;
@@ -766,6 +797,7 @@ export type Query = {
   cosplayer?: Maybe<Cosplayer>;
   cosplayers: Array<Maybe<Cosplayer>>;
   cosplayers_connection?: Maybe<CosplayerEntityResponseCollection>;
+  disneyMarket?: Maybe<DisneyMarket>;
   exhibitor?: Maybe<Exhibitor>;
   faq?: Maybe<Faq>;
   global?: Maybe<Global>;
@@ -817,6 +849,11 @@ export type QueryCosplayers_ConnectionArgs = {
   filters?: InputMaybe<CosplayerFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryDisneyMarketArgs = {
   status?: InputMaybe<PublicationStatus>;
 };
 
@@ -1398,6 +1435,11 @@ export type CosplayConQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type CosplayConQuery = { __typename?: 'Query', cosplayCon?: { __typename?: 'CosplayCon', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string, shareImage?: { __typename?: 'UploadFile', name: string, width?: number | null, height?: number | null, alternativeText?: string | null } | null } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, Images: Array<{ __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string, width?: number | null, height?: number | null } | null> } | null> | null } | null };
 
+export type DisneyMarketQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type DisneyMarketQuery = { __typename?: 'Query', disneyMarket?: { __typename?: 'DisneyMarket', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, Images: Array<{ __typename?: 'UploadFile', alternativeText?: string | null, height?: number | null, width?: number | null, url: string, name: string } | null> } | null> | null } | null };
+
 export type CosplayersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1467,6 +1509,27 @@ export const CosplayConDocument = `
   }
 }
     `;
+export const DisneyMarketDocument = `
+    query DisneyMarket {
+  disneyMarket {
+    seo {
+      metaTitle
+      metaDescription
+    }
+    sections {
+      title
+      subText
+      Images {
+        alternativeText
+        height
+        width
+        url
+        name
+      }
+    }
+  }
+}
+    `;
 export const CosplayersDocument = `
     query Cosplayers {
   cosplayers(pagination: {limit: 50}) {
@@ -1523,6 +1586,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     CosplayCon(variables?: CosplayConQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: CosplayConQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<CosplayConQuery>(CosplayConDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'CosplayCon', 'query', variables);
+    },
+    DisneyMarket(variables?: DisneyMarketQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: DisneyMarketQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<DisneyMarketQuery>(DisneyMarketDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'DisneyMarket', 'query', variables);
     },
     Cosplayers(variables?: CosplayersQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: CosplayersQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<CosplayersQuery>(CosplayersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Cosplayers', 'query', variables);
