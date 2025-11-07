@@ -26,7 +26,7 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
     title="Become an exhibitor"
   >
     <div slot="content" class="container max-w-5xl mx-auto">
-      <p>{exhibitor!.info}</p>
+      <p class="whitespace-pre-wrap">{exhibitor!.info}</p>
       {
         result && !result.error ? (
           <p>
