@@ -1,4 +1,6 @@
 ---
+export const prerender = false;
+
 import Section from "@/components/Section.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getHeaderLinks } from "@/lib/get-header-links";
@@ -9,6 +11,11 @@ const { data } = await sdk.Layout();
 const {
   data: { faq },
 } = await sdk.Faq();
+
+Astro.response.headers.set(
+  "Cache-Control",
+  "public, max-age=1800, s-maxage=1800"
+);
 ---
 
 <Layout
