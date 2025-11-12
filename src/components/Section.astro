@@ -16,7 +16,9 @@ type Props = {
 
   {
     Astro.props.subText && (
-      <h2 class="md:fluid-lg mt-3">{Astro.props.subText}</h2>
+      <h2 class="md:fluid-lg mt-3 whitespace-pre-wrap">
+        {Astro.props.subText}
+      </h2>
     )
   }
 
