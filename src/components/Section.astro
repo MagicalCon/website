@@ -2,6 +2,7 @@
 type Props = {
   title: string;
   subText?: string;
+  text?: string;
   class?: string;
   headingGradientClass: string;
 };
@@ -16,9 +17,13 @@ type Props = {
 
   {
     Astro.props.subText && (
-      <h2 class="md:fluid-lg mt-3 whitespace-pre-wrap">
-        {Astro.props.subText}
-      </h2>
+      <h2 class="md:fluid-lg mt-3">{Astro.props.subText}</h2>
+    )
+  }
+
+  {
+    Astro.props.text && (
+      <p class="text-fluid whitespace-pre-wrap mt-3">{Astro.props.text}</p>
     )
   }
 

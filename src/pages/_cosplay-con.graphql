@@ -13,6 +13,7 @@ query CosplayCon {
     sections {
       title
       subText
+      text
       Images {
         name
         alternativeText

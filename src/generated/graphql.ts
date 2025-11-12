@@ -119,6 +119,7 @@ export type ComponentLayoutSection = {
   Images_connection?: Maybe<UploadFileRelationResponseCollection>;
   id: Scalars['ID']['output'];
   subText?: Maybe<Scalars['String']['output']>;
+  text?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
 };
 
@@ -141,6 +142,7 @@ export type ComponentLayoutSectionFiltersInput = {
   not?: InputMaybe<ComponentLayoutSectionFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentLayoutSectionFiltersInput>>>;
   subText?: InputMaybe<StringFilterInput>;
+  text?: InputMaybe<StringFilterInput>;
   title?: InputMaybe<StringFilterInput>;
 };
 
@@ -148,6 +150,7 @@ export type ComponentLayoutSectionInput = {
   Images?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   id?: InputMaybe<Scalars['ID']['input']>;
   subText?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -1433,12 +1436,12 @@ export type ExhibitorQuery = { __typename?: 'Query', exhibitor?: { __typename?: 
 export type CosplayConQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CosplayConQuery = { __typename?: 'Query', cosplayCon?: { __typename?: 'CosplayCon', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string, shareImage?: { __typename?: 'UploadFile', name: string, width?: number | null, height?: number | null, alternativeText?: string | null } | null } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, Images: Array<{ __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string, width?: number | null, height?: number | null } | null> } | null> | null } | null };
+export type CosplayConQuery = { __typename?: 'Query', cosplayCon?: { __typename?: 'CosplayCon', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string, shareImage?: { __typename?: 'UploadFile', name: string, width?: number | null, height?: number | null, alternativeText?: string | null } | null } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, text?: string | null, Images: Array<{ __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string, width?: number | null, height?: number | null } | null> } | null> | null } | null };
 
 export type DisneyMarketQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type DisneyMarketQuery = { __typename?: 'Query', disneyMarket?: { __typename?: 'DisneyMarket', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, Images: Array<{ __typename?: 'UploadFile', alternativeText?: string | null, height?: number | null, width?: number | null, url: string, name: string } | null> } | null> | null } | null };
+export type DisneyMarketQuery = { __typename?: 'Query', disneyMarket?: { __typename?: 'DisneyMarket', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, text?: string | null, Images: Array<{ __typename?: 'UploadFile', alternativeText?: string | null, height?: number | null, width?: number | null, url: string, name: string } | null> } | null> | null } | null };
 
 export type CosplayersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1498,6 +1501,7 @@ export const CosplayConDocument = `
     sections {
       title
       subText
+      text
       Images {
         name
         alternativeText
@@ -1519,6 +1523,7 @@ export const DisneyMarketDocument = `
     sections {
       title
       subText
+      text
       Images {
         alternativeText
         height
