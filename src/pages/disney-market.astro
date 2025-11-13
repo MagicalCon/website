@@ -6,6 +6,7 @@ import Section from "@/components/Section.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getHeaderLinks } from "@/lib/get-header-links";
 import { getWrappedSdk } from "@/lib/get-wrapped-sdk";
+import { getTypedTableData } from "@/lib/get-typed-table-data";
 import { Image } from "astro:assets";
 import magicalDisneyMarktLogo from "@/images/magical_disney_markt_logo.svg";
 import EventInfo from "@/components/EventInfo.astro";
@@ -124,6 +125,31 @@ Astro.response.headers.set(
                 />
               ))}
             </div>
+          </div>
+        ) : null}
+        {section?.table ? (
+          <div
+            slot="content"
+            class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"
+          >
+            <table class="table-auto text-left">
+              <thead>
+                <tr>
+                  {getTypedTableData(section.table).columns.map((column) => (
+                    <th class="px-6">{column.label}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {getTypedTableData(section.table).rows.map((row) => (
+                  <tr>
+                    {row.map((content) => (
+                      <td class="px-6">{content}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         ) : null}
       </Section>

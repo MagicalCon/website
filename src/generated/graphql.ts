@@ -119,6 +119,7 @@ export type ComponentLayoutSection = {
   Images_connection?: Maybe<UploadFileRelationResponseCollection>;
   id: Scalars['ID']['output'];
   subText?: Maybe<Scalars['String']['output']>;
+  table?: Maybe<Scalars['JSON']['output']>;
   text?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
 };
@@ -142,6 +143,7 @@ export type ComponentLayoutSectionFiltersInput = {
   not?: InputMaybe<ComponentLayoutSectionFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentLayoutSectionFiltersInput>>>;
   subText?: InputMaybe<StringFilterInput>;
+  table?: InputMaybe<JsonFilterInput>;
   text?: InputMaybe<StringFilterInput>;
   title?: InputMaybe<StringFilterInput>;
 };
@@ -150,6 +152,7 @@ export type ComponentLayoutSectionInput = {
   Images?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   id?: InputMaybe<Scalars['ID']['input']>;
   subText?: InputMaybe<Scalars['String']['input']>;
+  table?: InputMaybe<Scalars['JSON']['input']>;
   text?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -1441,7 +1444,7 @@ export type CosplayConQuery = { __typename?: 'Query', cosplayCon?: { __typename?
 export type DisneyMarketQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type DisneyMarketQuery = { __typename?: 'Query', disneyMarket?: { __typename?: 'DisneyMarket', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, text?: string | null, Images: Array<{ __typename?: 'UploadFile', alternativeText?: string | null, height?: number | null, width?: number | null, url: string, name: string } | null> } | null> | null } | null };
+export type DisneyMarketQuery = { __typename?: 'Query', disneyMarket?: { __typename?: 'DisneyMarket', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, text?: string | null, table?: any | null, Images: Array<{ __typename?: 'UploadFile', alternativeText?: string | null, height?: number | null, width?: number | null, url: string, name: string } | null> } | null> | null } | null };
 
 export type CosplayersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1531,6 +1534,7 @@ export const DisneyMarketDocument = `
         url
         name
       }
+      table
     }
   }
 }
