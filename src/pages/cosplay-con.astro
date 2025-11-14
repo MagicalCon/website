@@ -9,6 +9,7 @@ import { getWrappedSdk } from "@/lib/get-wrapped-sdk";
 import { Image } from "astro:assets";
 import magicalCosplayConLogo from "@/images/magical_cosplay_con_logo.svg";
 import EventInfo from "@/components/EventInfo.astro";
+import { getTypedTableData } from "@/lib/get-typed-table-data";
 
 const sdk = getWrappedSdk();
 const { data } = await sdk.Layout();
@@ -83,6 +84,31 @@ Astro.response.headers.set(
                 />
               ))}
             </div>
+          </div>
+        ) : null}
+        {section?.table ? (
+          <div
+            slot="content"
+            class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"
+          >
+            <table class="table-auto md:table-fixed text-left">
+              <thead>
+                <tr>
+                  {getTypedTableData(section.table).columns.map((column) => (
+                    <th class="px-6">{column.label}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {getTypedTableData(section.table).rows.map((row) => (
+                  <tr>
+                    {row.map((content) => (
+                      <td class="px-6">{content}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         ) : null}
       </Section>
