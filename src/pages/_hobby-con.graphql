@@ -1,5 +1,5 @@
-query CosplayCon {
-  cosplayCon {
+query HobbyCon {
+  hobbyCon {
     seo {
       metaTitle
       metaDescription
