@@ -1,11 +1,15 @@
 ---
-import type { ComponentDataDisplayEventInfo } from "@/generated/graphql";
 import Countdown from "./Countdown.astro";
 
-type Props = ComponentDataDisplayEventInfo;
+type Props = {
+  target: string;
+  day: string;
+  time: string;
+  location: string;
+  price?: string;
+};
 
-const { startDate, endDate, location, price, buttonUrl, buttonLabel } =
-  Astro.props;
+const { target, day, time, location, price } = Astro.props;
 ---
 
 <section
@@ -14,7 +18,7 @@ const { startDate, endDate, location, price, buttonUrl, buttonLabel } =
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="md:flex md:items-center md:justify-between md:space-x-16">
       <div class="max-w-lg xl:max-w-2xl">
-        <Countdown target={startDate} />
+        <Countdown target={target} />
       </div><div
         class="mt-12 flex flex-grow items-center space-x-4 sm:space-x-8 md:mt-0 lg:space-x-16"
       >
@@ -89,28 +93,8 @@ const { startDate, endDate, location, price, buttonUrl, buttonLabel } =
           >
             <p>🕘 &nbsp;</p>
             <div>
-              <p class="capitalize">
-                {
-                  new Date(startDate).toLocaleDateString("nl-BE", {
-                    weekday: "long",
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })
-                } - {
-                  new Date(endDate).toLocaleDateString("nl-BE", {
-                    weekday: "long",
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })
-                }
-              </p>
-              <p>
-                {new Date(startDate).toLocaleTimeString("nl-BE")} - {
-                  new Date(endDate).toLocaleTimeString("nl-BE")
-                }
-              </p>
+              <p>{day}</p>
+              <p>{time}</p>
             </div>
           </div>
           <p class="font-pj text-base font-normal text-gray-800 lg:text-xl">
@@ -126,18 +110,7 @@ const { startDate, endDate, location, price, buttonUrl, buttonLabel } =
           <p class="font-pj text-base font-normal text-gray-800 lg:text-xl">
             🚘 <span class="underline">Free parking!</span>
           </p>
-          {
-            buttonLabel && buttonUrl ? (
-              <a
-                slot="cta-button"
-                href={buttonUrl}
-                target="_blank"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded self-start mt-2"
-              >
-                {buttonLabel}
-              </a>
-            ) : null
-          }
+          <slot name="cta-button" />
         </div>
       </div>
     </div>

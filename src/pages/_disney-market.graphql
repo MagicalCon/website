@@ -4,16 +4,6 @@ query DisneyMarket {
       metaTitle
       metaDescription
     }
-    eventInfo {
-      id
-      location
-      startDate
-      endDate
-      showButton
-      price
-      buttonLabel
-      buttonUrl
-    }
     sections {
       title
       subText

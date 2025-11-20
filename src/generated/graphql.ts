@@ -44,29 +44,6 @@ export type BooleanFilterInput = {
   startsWith?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type ComponentDataDisplayEventInfo = {
-  __typename?: 'ComponentDataDisplayEventInfo';
-  buttonLabel?: Maybe<Scalars['String']['output']>;
-  buttonUrl?: Maybe<Scalars['String']['output']>;
-  endDate: Scalars['DateTime']['output'];
-  id: Scalars['ID']['output'];
-  location: Scalars['String']['output'];
-  price?: Maybe<Scalars['String']['output']>;
-  showButton: Scalars['Boolean']['output'];
-  startDate: Scalars['DateTime']['output'];
-};
-
-export type ComponentDataDisplayEventInfoInput = {
-  buttonLabel?: InputMaybe<Scalars['String']['input']>;
-  buttonUrl?: InputMaybe<Scalars['String']['input']>;
-  endDate?: InputMaybe<Scalars['DateTime']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  location?: InputMaybe<Scalars['String']['input']>;
-  price?: InputMaybe<Scalars['String']['input']>;
-  showButton?: InputMaybe<Scalars['Boolean']['input']>;
-  startDate?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
 export type ComponentDataDisplayPersona = {
   __typename?: 'ComponentDataDisplayPersona';
   handle: Scalars['String']['output'];
@@ -223,7 +200,6 @@ export type CosplayCon = {
   __typename?: 'CosplayCon';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   documentId: Scalars['ID']['output'];
-  eventInfo?: Maybe<ComponentDataDisplayEventInfo>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   sections?: Maybe<Array<Maybe<ComponentLayoutSection>>>;
   seo?: Maybe<ComponentSharedSeo>;
@@ -238,7 +214,6 @@ export type CosplayConSectionsArgs = {
 };
 
 export type CosplayConInput = {
-  eventInfo?: InputMaybe<ComponentDataDisplayEventInfoInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   sections?: InputMaybe<Array<InputMaybe<ComponentLayoutSectionInput>>>;
   seo?: InputMaybe<ComponentSharedSeoInput>;
@@ -311,7 +286,6 @@ export type DisneyMarket = {
   __typename?: 'DisneyMarket';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   documentId: Scalars['ID']['output'];
-  eventInfo?: Maybe<ComponentDataDisplayEventInfo>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   sections?: Maybe<Array<Maybe<ComponentLayoutSection>>>;
   seo?: Maybe<ComponentSharedSeo>;
@@ -326,7 +300,6 @@ export type DisneyMarketSectionsArgs = {
 };
 
 export type DisneyMarketInput = {
-  eventInfo?: InputMaybe<ComponentDataDisplayEventInfoInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   sections?: InputMaybe<Array<InputMaybe<ComponentLayoutSectionInput>>>;
   seo?: InputMaybe<ComponentSharedSeoInput>;
@@ -402,7 +375,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = ComponentDataDisplayEventInfo | ComponentDataDisplayPersona | ComponentDisclosureAccordion | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutSection | ComponentSharedSeo | ComponentTypographyLink | CosplayCon | Cosplayer | DisneyMarket | Exhibitor | Faq | Global | HobbyCon | I18NLocale | Photographer | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentDataDisplayPersona | ComponentDisclosureAccordion | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutSection | ComponentSharedSeo | ComponentTypographyLink | CosplayCon | Cosplayer | DisneyMarket | Exhibitor | Faq | Global | I18NLocale | Photographer | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Global = {
   __typename?: 'Global';
@@ -426,31 +399,6 @@ export type GlobalInput = {
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   siteDescription?: InputMaybe<Scalars['String']['input']>;
   siteName?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type HobbyCon = {
-  __typename?: 'HobbyCon';
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  documentId: Scalars['ID']['output'];
-  eventInfo?: Maybe<ComponentDataDisplayEventInfo>;
-  publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  sections?: Maybe<Array<Maybe<ComponentLayoutSection>>>;
-  seo?: Maybe<ComponentSharedSeo>;
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-
-export type HobbyConSectionsArgs = {
-  filters?: InputMaybe<ComponentLayoutSectionFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type HobbyConInput = {
-  eventInfo?: InputMaybe<ComponentDataDisplayEventInfoInput>;
-  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  sections?: InputMaybe<Array<InputMaybe<ComponentLayoutSectionInput>>>;
-  seo?: InputMaybe<ComponentSharedSeoInput>;
 };
 
 export type I18NLocale = {
@@ -574,7 +522,6 @@ export type Mutation = {
   deleteExhibitor?: Maybe<DeleteMutationResponse>;
   deleteFaq?: Maybe<DeleteMutationResponse>;
   deleteGlobal?: Maybe<DeleteMutationResponse>;
-  deleteHobbyCon?: Maybe<DeleteMutationResponse>;
   deletePhotographer?: Maybe<DeleteMutationResponse>;
   deleteReviewWorkflowsWorkflow?: Maybe<DeleteMutationResponse>;
   deleteReviewWorkflowsWorkflowStage?: Maybe<DeleteMutationResponse>;
@@ -598,7 +545,6 @@ export type Mutation = {
   updateExhibitor?: Maybe<Exhibitor>;
   updateFaq?: Maybe<Faq>;
   updateGlobal?: Maybe<Global>;
-  updateHobbyCon?: Maybe<HobbyCon>;
   updatePhotographer?: Maybe<Photographer>;
   updateReviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
   updateReviewWorkflowsWorkflowStage?: Maybe<ReviewWorkflowsWorkflowStage>;
@@ -750,12 +696,6 @@ export type MutationUpdateGlobalArgs = {
 };
 
 
-export type MutationUpdateHobbyConArgs = {
-  data: HobbyConInput;
-  status?: InputMaybe<PublicationStatus>;
-};
-
-
 export type MutationUpdatePhotographerArgs = {
   data: PhotographerInput;
   documentId: Scalars['ID']['input'];
@@ -867,7 +807,6 @@ export type Query = {
   exhibitor?: Maybe<Exhibitor>;
   faq?: Maybe<Faq>;
   global?: Maybe<Global>;
-  hobbyCon?: Maybe<HobbyCon>;
   i18NLocale?: Maybe<I18NLocale>;
   i18NLocales: Array<Maybe<I18NLocale>>;
   i18NLocales_connection?: Maybe<I18NLocaleEntityResponseCollection>;
@@ -936,11 +875,6 @@ export type QueryFaqArgs = {
 
 
 export type QueryGlobalArgs = {
-  status?: InputMaybe<PublicationStatus>;
-};
-
-
-export type QueryHobbyConArgs = {
   status?: InputMaybe<PublicationStatus>;
 };
 
@@ -1505,12 +1439,12 @@ export type ExhibitorQuery = { __typename?: 'Query', exhibitor?: { __typename?: 
 export type CosplayConQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CosplayConQuery = { __typename?: 'Query', cosplayCon?: { __typename?: 'CosplayCon', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string, shareImage?: { __typename?: 'UploadFile', name: string, width?: number | null, height?: number | null, alternativeText?: string | null } | null } | null, eventInfo?: { __typename?: 'ComponentDataDisplayEventInfo', id: string, location: string, startDate: any, endDate: any, showButton: boolean, price?: string | null, buttonLabel?: string | null, buttonUrl?: string | null } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, text?: string | null, table?: any | null, Images: Array<{ __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string, width?: number | null, height?: number | null } | null> } | null> | null } | null };
+export type CosplayConQuery = { __typename?: 'Query', cosplayCon?: { __typename?: 'CosplayCon', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string, shareImage?: { __typename?: 'UploadFile', name: string, width?: number | null, height?: number | null, alternativeText?: string | null } | null } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, text?: string | null, table?: any | null, Images: Array<{ __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string, width?: number | null, height?: number | null } | null> } | null> | null } | null };
 
 export type DisneyMarketQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type DisneyMarketQuery = { __typename?: 'Query', disneyMarket?: { __typename?: 'DisneyMarket', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string } | null, eventInfo?: { __typename?: 'ComponentDataDisplayEventInfo', id: string, location: string, startDate: any, endDate: any, showButton: boolean, price?: string | null, buttonLabel?: string | null, buttonUrl?: string | null } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, text?: string | null, table?: any | null, Images: Array<{ __typename?: 'UploadFile', alternativeText?: string | null, height?: number | null, width?: number | null, url: string, name: string } | null> } | null> | null } | null };
+export type DisneyMarketQuery = { __typename?: 'Query', disneyMarket?: { __typename?: 'DisneyMarket', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, text?: string | null, table?: any | null, Images: Array<{ __typename?: 'UploadFile', alternativeText?: string | null, height?: number | null, width?: number | null, url: string, name: string } | null> } | null> | null } | null };
 
 export type CosplayersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1526,11 +1460,6 @@ export type FaqQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type FaqQuery = { __typename?: 'Query', faq?: { __typename?: 'Faq', accordions?: Array<{ __typename?: 'ComponentDisclosureAccordion', name: string, content: string } | null> | null } | null };
-
-export type HobbyConQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type HobbyConQuery = { __typename?: 'Query', hobbyCon?: { __typename?: 'HobbyCon', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string, shareImage?: { __typename?: 'UploadFile', name: string, width?: number | null, height?: number | null, alternativeText?: string | null } | null } | null, eventInfo?: { __typename?: 'ComponentDataDisplayEventInfo', id: string, location: string, startDate: any, endDate: any, showButton: boolean, price?: string | null, buttonLabel?: string | null, buttonUrl?: string | null } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, text?: string | null, table?: any | null, Images: Array<{ __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string, width?: number | null, height?: number | null } | null> } | null> | null } | null };
 
 
 export const LayoutDocument = `
@@ -1572,16 +1501,6 @@ export const CosplayConDocument = `
         alternativeText
       }
     }
-    eventInfo {
-      id
-      location
-      startDate
-      endDate
-      showButton
-      price
-      buttonLabel
-      buttonUrl
-    }
     sections {
       title
       subText
@@ -1604,16 +1523,6 @@ export const DisneyMarketDocument = `
     seo {
       metaTitle
       metaDescription
-    }
-    eventInfo {
-      id
-      location
-      startDate
-      endDate
-      showButton
-      price
-      buttonLabel
-      buttonUrl
     }
     sections {
       title
@@ -1671,45 +1580,6 @@ export const FaqDocument = `
   }
 }
     `;
-export const HobbyConDocument = `
-    query HobbyCon {
-  hobbyCon {
-    seo {
-      metaTitle
-      metaDescription
-      shareImage {
-        name
-        width
-        height
-        alternativeText
-      }
-    }
-    eventInfo {
-      id
-      location
-      startDate
-      endDate
-      showButton
-      price
-      buttonLabel
-      buttonUrl
-    }
-    sections {
-      title
-      subText
-      text
-      Images {
-        name
-        alternativeText
-        url
-        width
-        height
-      }
-      table
-    }
-  }
-}
-    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -1738,9 +1608,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     Faq(variables?: FaqQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: FaqQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<FaqQuery>(FaqDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Faq', 'query', variables);
-    },
-    HobbyCon(variables?: HobbyConQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: HobbyConQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
-        return withWrapper((wrappedRequestHeaders) => client.rawRequest<HobbyConQuery>(HobbyConDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'HobbyCon', 'query', variables);
     }
   };
 }

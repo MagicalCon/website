@@ -9,13 +9,9 @@ import { getWrappedSdk } from "@/lib/get-wrapped-sdk";
 import magicalHobbyBeursLogo from "@/images/magical_hobby_beurs_logo.jpg";
 import { Image } from "astro:assets";
 import Section from "@/components/Section.astro";
-import { getTypedTableData } from "@/lib/get-typed-table-data";
 
 const sdk = getWrappedSdk();
 const { data } = await sdk.Layout();
-const {
-  data: { hobbyCon },
-} = await sdk.HobbyCon();
 
 Astro.response.headers.set(
   "Cache-Control",
@@ -43,61 +39,14 @@ Astro.response.headers.set(
       widths={[240, 540, 720, magicalHobbyBeursLogo.width]}
     />
   </Hero>
-  <EventInfo {...hobbyCon?.eventInfo!} />
-
-  {
-    hobbyCon?.sections?.map((section, i) => (
-      <Section
-        headingGradientClass="from-[#232946] to-indigo-600"
-        title={section!.title}
-        subText={section!.subText!}
-        {...(i % 2 !== 0 && { class: "bg-white" })}
-      >
-        {section!.Images.length ? (
-          <div
-            slot="content"
-            class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"
-          >
-            <div class="flex gap-10 flex-col md:flex-row">
-              {section!.Images.map((image) => (
-                <Image
-                  src={image!.url}
-                  alt={image?.alternativeText ?? image!.name}
-                  quality={90}
-                  width={image!.width!}
-                  height={image!.height!}
-                  class="rounded-lg max-w-96"
-                />
-              ))}
-            </div>
-          </div>
-        ) : null}
-        {section?.table ? (
-          <div
-            slot="content"
-            class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"
-          >
-            <table class="table-auto md:table-fixed text-left">
-              <thead>
-                <tr>
-                  {getTypedTableData(section.table).columns.map((column) => (
-                    <th class="px-6">{column.label}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {getTypedTableData(section.table).rows.map((row) => (
-                  <tr>
-                    {row.map((content) => (
-                      <td class="px-6">{content}</td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : null}
-      </Section>
-    ))
-  }
+  <EventInfo
+    target="19 April 2026 12:00:00"
+    day="19 April 2026"
+    time="12:00 - 17:00"
+    location="Belgium - GC Klein Boom, Mechelbaan 604, 2580 Putte"
+  />
+  <Section
+    headingGradientClass="from-[#232946] to-indigo-600"
+    title="More info coming"
+  />
 </Layout>
