@@ -82,11 +82,11 @@ Astro.response.headers.set(
             slot="content"
             class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"
           >
-            <table class="table-auto md:table-fixed text-left">
+            <table class="md:table-auto table-fixed text-center md:text-left w-full">
               <thead>
                 <tr>
                   {getTypedTableData(section.table).columns.map((column) => (
-                    <th class="px-6">{column.label}</th>
+                    <th class="md:px-6">{column.label}</th>
                   ))}
                 </tr>
               </thead>
@@ -94,7 +94,7 @@ Astro.response.headers.set(
                 {getTypedTableData(section.table).rows.map((row) => (
                   <tr>
                     {row.map((content) => (
-                      <td class="px-6">{content}</td>
+                      <td class="md:px-6">{content}</td>
                     ))}
                   </tr>
                 ))}
