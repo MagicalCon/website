@@ -25,8 +25,8 @@ Astro.response.headers.set(
 ---
 
 <Layout
-  title={data.global?.siteName}
-  description={data.global?.siteDescription}
+  title={hobbyCon!.seo!.metaTitle}
+  description={hobbyCon!.seo!.metaDescription}
   headerLinks={getHeaderLinks(data)}
   class="bg-violet-200"
 >
