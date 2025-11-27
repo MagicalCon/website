@@ -1,0 +1,21 @@
+query HobbyCon {
+  hobbyCon {
+    seo {
+      metaTitle
+      metaDescription
+    }
+    sections {
+      title
+      subText
+      text
+      Images {
+        alternativeText
+        height
+        width
+        url
+        name
+      }
+      table
+    }
+  }
+}
