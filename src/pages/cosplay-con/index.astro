@@ -17,10 +17,7 @@ const {
   data: { cosplayCon },
 } = await sdk.CosplayCon();
 
-Astro.response.headers.set(
-  "Cache-Control",
-  "public, max-age=1800, s-maxage=1800"
-);
+Astro.response.headers.set("Cache-Control", "public, max-age=1800, s-maxage=1800");
 ---
 
 <Layout
@@ -68,29 +65,26 @@ Astro.response.headers.set(
         {...(i % 2 !== 0 && { class: "bg-white" })}
       >
         {section!.Images.length ? (
-          <div
-            slot="content"
-            class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"
-          >
+          <div slot="content" class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6">
             <div class="flex gap-10 flex-col md:flex-row">
               {section!.Images.map((image) => (
-                <Image
-                  src={image!.url}
-                  alt={image?.alternativeText ?? image!.name}
-                  quality={90}
-                  width={image!.width!}
-                  height={image!.height!}
-                  class="rounded-lg max-w-96"
-                />
+                <div>
+                  <Image
+                    src={image!.url}
+                    alt={image?.alternativeText ?? image!.name}
+                    quality={90}
+                    width={image!.width!}
+                    height={image!.height!}
+                    class="rounded-lg max-w-96"
+                  />
+                  <p class="text-lg mt-4">{image!.caption}</p>
+                </div>
               ))}
             </div>
           </div>
         ) : null}
         {section?.table ? (
-          <div
-            slot="content"
-            class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"
-          >
+          <div slot="content" class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6">
             <table class="md:table-auto table-fixed text-center md:text-left w-full">
               <thead>
                 <tr>
