@@ -124,6 +124,7 @@ Astro.response.headers.set(
           >
             <div class="flex gap-10 flex-col md:flex-row">
               {section!.Images.map((image) => (
+              <div>
                 <Image
                   src={image!.url}
                   alt={image?.alternativeText ?? image!.name}
@@ -132,6 +133,8 @@ Astro.response.headers.set(
                   height={image!.height!}
                   class="rounded-lg max-w-96"
                 />
+                <p class="text-lg mt-4">{image!.caption}</p>
+              </div>
               ))}
             </div>
           </div>

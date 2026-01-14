@@ -14,6 +14,7 @@ query HobbyCon {
         width
         url
         name
+        caption
       }
       table
     }

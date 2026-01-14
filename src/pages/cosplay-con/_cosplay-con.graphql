@@ -20,6 +20,7 @@ query CosplayCon {
         url
         width
         height
+        caption
       }
       table
     }
