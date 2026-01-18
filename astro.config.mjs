@@ -10,6 +10,7 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://magicalcon.be",
   vite: {
+    // @ts-expect-error
     plugins: [tailwindcss()],
   },
   integrations: [
@@ -34,6 +35,7 @@ export default defineConfig({
     ],
   },
   adapter: netlify(),
+  output: "static",
   image: {
     remotePatterns: [{ protocol: "https" }],
   },
