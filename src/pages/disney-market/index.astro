@@ -34,10 +34,7 @@ const FOOD_ITEMS = [
   { icon: "🍦", text: "Ice Cream" },
 ];
 
-Astro.response.headers.set(
-  "Cache-Control",
-  "public, max-age=1800, s-maxage=1800"
-);
+Astro.response.headers.set("Cache-Control", "public, max-age=1800, s-maxage=1800");
 ---
 
 <Layout
@@ -82,10 +79,7 @@ Astro.response.headers.set(
     title="Food for all"
     subText="Buy your food & drinks for fair prices!"
   >
-    <div
-      slot="content"
-      class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"
-    >
+    <div slot="content" class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {
           FOOD_ITEMS.map(({ icon, text }) => (
@@ -98,11 +92,7 @@ Astro.response.headers.set(
       </div>
     </div>
   </Section>
-  <Section
-    headingGradientClass="from-cyan-500 to-blue-500"
-    title="Cosplayers"
-    class="bg-white"
-  >
+  <Section headingGradientClass="from-cyan-500 to-blue-500" title="Cosplayers" class="bg-white">
     <div slot="content" class="container max-w-5xl mx-auto">
       <CosplayerGrid cosplayers={cosplayers} />
     </div>
@@ -118,32 +108,26 @@ Astro.response.headers.set(
         {...(i % 2 !== 0 && { class: "bg-white" })}
       >
         {section!.Images.length ? (
-          <div
-            slot="content"
-            class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"
-          >
+          <div slot="content" class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6">
             <div class="flex gap-10 flex-col md:flex-row">
               {section!.Images.map((image) => (
-              <div>
-                <Image
-                  src={image!.url}
-                  alt={image?.alternativeText ?? image!.name}
-                  quality={90}
-                  width={image!.width!}
-                  height={image!.height!}
-                  class="rounded-lg max-w-96"
-                />
-                <p class="text-lg mt-4">{image!.caption}</p>
-              </div>
+                <div>
+                  <Image
+                    src={image!.url}
+                    alt={image?.alternativeText ?? image!.name}
+                    quality={90}
+                    width={image!.width!}
+                    height={image!.height!}
+                    class="rounded-lg max-w-96"
+                  />
+                  <p class="text-lg mt-4">{image!.caption}</p>
+                </div>
               ))}
             </div>
           </div>
         ) : null}
         {section?.table ? (
-          <div
-            slot="content"
-            class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"
-          >
+          <div slot="content" class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6">
             <table class="md:table-auto table-fixed text-center md:text-left w-full">
               <thead>
                 <tr>
@@ -168,15 +152,8 @@ Astro.response.headers.set(
     ))
   }
 
-  <Section
-    headingGradientClass="from-cyan-500 to-blue-500"
-    title="Photographers"
-    class="bg-white"
-  >
-    <div
-      slot="content"
-      class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6"
-    >
+  <Section headingGradientClass="from-cyan-500 to-blue-500" title="Photographers" class="bg-white">
+    <div slot="content" class="container max-w-5xl mx-auto flex justify-center flex-col items-center mt-6">
       <PhotographerGrid photographers={photographers} />
     </div>
   </Section>

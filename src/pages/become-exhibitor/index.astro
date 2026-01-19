@@ -21,25 +21,17 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
   headerLinks={getHeaderLinks(data)}
   class="bg-[#f2f7f5] text-[#00473e]"
 >
-  <Section
-    headingGradientClass="from-[#00473e] to-[#00473e]"
-    title="Become an exhibitor"
-  >
+  <Section headingGradientClass="from-[#00473e] to-[#00473e]" title="Become an exhibitor">
     <div slot="content" class="container max-w-5xl mx-auto">
       <p class="whitespace-pre-wrap">{exhibitor!.info}</p>
       {
         result && !result.error ? (
-          <p>
-            Thank you for your submission! We will be in touch with you soon.
-          </p>
+          <p>Thank you for your submission! We will be in touch with you soon.</p>
         ) : (
           <form class="w-full max-w-lg mx-auto px-4 py-7 bg-[#f2f7f5] text-left">
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full px-3">
-                <label
-                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
-                  for="event"
-                >
+                <label class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2" for="event">
                   Event *
                 </label>
 
@@ -51,10 +43,7 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
                   name="event"
                   class="w-4 h-4 text--[#00473e] bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 />
-                <label
-                  for="magical-cosplay-con"
-                  class="ms-2 text-sm font-medium text-[#00473e]"
-                >
+                <label for="magical-cosplay-con" class="ms-2 text-sm font-medium text-[#00473e]">
                   Magical Cosplay Con
                 </label>
               </div>
@@ -67,10 +56,7 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
                   name="event"
                   class="w-4 h-4 text-[#00473e] bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 />
-                <label
-                  for="disney-markt"
-                  class="ms-2 text-sm font-medium text-[#00473e]"
-                >
+                <label for="disney-markt" class="ms-2 text-sm font-medium text-[#00473e]">
                   Magical Disney Markt
                 </label>
               </div>
@@ -83,10 +69,7 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
                   name="event"
                   class="w-4 h-4 text-[#00473e] bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 />
-                <label
-                  for="hobby-con"
-                  class="ms-2 text-sm font-medium text-[#00473e]"
-                >
+                <label for="hobby-con" class="ms-2 text-sm font-medium text-[#00473e]">
                   Magical Hobby Beurs
                 </label>
               </div>
@@ -94,10 +77,7 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
 
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full px-3">
-                <label
-                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
-                  for="name"
-                >
+                <label class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2" for="name">
                   Name *
                 </label>
                 <input
@@ -113,10 +93,7 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
 
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label
-                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
-                  for="name"
-                >
+                <label class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2" for="name">
                   Phone *
                 </label>
                 <input
@@ -129,10 +106,7 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
                 />
               </div>
               <div class="w-full md:w-1/2 px-3">
-                <label
-                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
-                  for="phone"
-                >
+                <label class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2" for="phone">
                   Email *
                 </label>
                 <input
@@ -148,10 +122,7 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
 
             <div class="flex flex-wrap -mx-3 mb-2">
               <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                <label
-                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
-                  for="street"
-                >
+                <label class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2" for="street">
                   Street
                 </label>
                 <input
@@ -163,10 +134,7 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
                 />
               </div>
               <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                <label
-                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
-                  for="zip"
-                >
+                <label class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2" for="zip">
                   Postal code
                 </label>
                 <input
@@ -178,10 +146,7 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
                 />
               </div>
               <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                <label
-                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
-                  for="city"
-                >
+                <label class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2" for="city">
                   City
                 </label>
                 <input
@@ -196,10 +161,7 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
 
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label
-                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
-                  for="website"
-                >
+                <label class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2" for="website">
                   Website
                 </label>
                 <input
@@ -211,10 +173,7 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
                 />
               </div>
               <div class="w-full md:w-1/2 px-3">
-                <label
-                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
-                  for="Facebook"
-                >
+                <label class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2" for="Facebook">
                   Facebook
                 </label>
                 <input
@@ -229,10 +188,7 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
 
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full px-3">
-                <label
-                  class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2"
-                  for="message"
-                >
+                <label class="block uppercase tracking-wide text-[#00473e] text-xs font-bold mb-2" for="message">
                   Message
                 </label>
                 <textarea
@@ -272,9 +228,7 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
     const { error, data } = await actions.exhibitor.submit(formData);
 
     // Reset
-    document
-      .querySelectorAll("#" + FORM_ERROR_ID)
-      .forEach((element) => element.remove());
+    document.querySelectorAll("#" + FORM_ERROR_ID).forEach((element) => element.remove());
 
     if (!error && typeof data === "object") {
       Object.keys(data).forEach((key) => {
@@ -284,18 +238,16 @@ const result = Astro.getActionResult(actions.exhibitor.submit);
     }
 
     if (isInputError(error)) {
-      return Object.entries(error.fields).forEach(
-        ([fieldName, fieldErrors]) => {
-          const message = fieldErrors.join(", ");
-          const input = document.querySelector(`input[name="${fieldName}"]`);
-          input?.classList.add("border-red-500");
-          const p = document.createElement("p");
-          p.innerText = message;
-          p.classList.add("text-red-500", "text-xs", "italic");
-          p.id = FORM_ERROR_ID;
-          input?.after(p);
-        }
-      );
+      return Object.entries(error.fields).forEach(([fieldName, fieldErrors]) => {
+        const message = fieldErrors.join(", ");
+        const input = document.querySelector(`input[name="${fieldName}"]`);
+        input?.classList.add("border-red-500");
+        const p = document.createElement("p");
+        p.innerText = message;
+        p.classList.add("text-red-500", "text-xs", "italic");
+        p.id = FORM_ERROR_ID;
+        input?.after(p);
+      });
     }
 
     if (!error) {

@@ -12,10 +12,7 @@ const {
   data: { faq },
 } = await sdk.Faq();
 
-Astro.response.headers.set(
-  "Cache-Control",
-  "public, max-age=1800, s-maxage=1800"
-);
+Astro.response.headers.set("Cache-Control", "public, max-age=1800, s-maxage=1800");
 ---
 
 <Layout
