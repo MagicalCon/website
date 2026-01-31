@@ -25,14 +25,14 @@ const {
   data: { photographers },
 } = await sdk.Photographers();
 
-const FOOD_ITEMS = [
-  { icon: "🍟", text: "Fries with snacks" },
-  { icon: "🍔", text: "Hamburgers, Bickyburger,..." },
-  { icon: "🌭", text: "Bratwurst" },
-  { icon: "🍕", text: "Pizza" },
-  { icon: "🍝", text: "Pasta" },
-  { icon: "🍦", text: "Ice Cream" },
-];
+// const FOOD_ITEMS = [
+//   { icon: "🍟", text: "Fries with snacks" },
+//   { icon: "🍔", text: "Hamburgers, Bickyburger,..." },
+//   { icon: "🌭", text: "Bratwurst" },
+//   { icon: "🍕", text: "Pizza" },
+//   { icon: "🍝", text: "Pasta" },
+//   { icon: "🍦", text: "Ice Cream" },
+// ];
 
 Astro.response.headers.set("Cache-Control", "public, max-age=1800, s-maxage=1800");
 ---
@@ -74,7 +74,7 @@ Astro.response.headers.set("Cache-Control", "public, max-age=1800, s-maxage=1800
       Buy VIP ticket
     </a>
   </EventInfo>
-  <Section
+  <!-- <Section
     headingGradientClass="from-cyan-500 to-blue-500"
     title="Food for all"
     subText="Buy your food & drinks for fair prices!"
@@ -91,7 +91,7 @@ Astro.response.headers.set("Cache-Control", "public, max-age=1800, s-maxage=1800
         }
       </div>
     </div>
-  </Section>
+  </Section> -->
   <Section headingGradientClass="from-cyan-500 to-blue-500" title="Cosplayers" class="bg-white">
     <div slot="content" class="container max-w-5xl mx-auto">
       <CosplayerGrid cosplayers={cosplayers} />
