@@ -8,7 +8,7 @@ import { getHeaderLinks } from "@/lib/get-header-links";
 import { getWrappedSdk } from "@/lib/get-wrapped-sdk";
 import { Image } from "astro:assets";
 import magicalCosplayConLogo from "@/images/magical_cosplay_con_logo.svg";
-import EventInfo from "@/components/EventInfo.astro";
+// import EventInfo from "@/components/EventInfo.astro";
 import { getTypedTableData } from "@/lib/get-typed-table-data";
 
 const sdk = getWrappedSdk();
@@ -41,7 +41,7 @@ Astro.response.headers.set("Cache-Control", "public, max-age=1800, s-maxage=1800
       widths={[240, 540, 720, magicalCosplayConLogo.width]}
     />
   </Hero>
-  <EventInfo
+  <!-- <EventInfo
     target="25 July 2026 10:00:00"
     day="25 + 26 July 2026"
     time="10:00 - 18:00"
@@ -55,7 +55,7 @@ Astro.response.headers.set("Cache-Control", "public, max-age=1800, s-maxage=1800
     >
       Buy ticket
     </a>
-  </EventInfo>
+  </EventInfo> -->
   {
     cosplayCon?.sections?.map((section, i) => (
       <Section
