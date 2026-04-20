@@ -7,9 +7,10 @@ type Props = {
   time: string;
   location: string;
   price?: string;
+  vipPrice?: string;
 };
 
-const { target, day, time, location, price } = Astro.props;
+const { target, day, time, location, price, vipPrice } = Astro.props;
 ---
 
 <section
@@ -19,9 +20,7 @@ const { target, day, time, location, price } = Astro.props;
     <div class="md:flex md:items-center md:justify-between md:space-x-16">
       <div class="max-w-lg xl:max-w-2xl">
         <Countdown target={target} />
-      </div><div
-        class="mt-12 flex flex-grow items-center space-x-4 sm:space-x-8 md:mt-0 lg:space-x-16"
-      >
+      </div><div class="mt-12 flex flex-grow items-center space-x-4 sm:space-x-8 md:mt-0 lg:space-x-16">
         <div>
           <svg
             class="h-auto w-4 text-black"
@@ -29,68 +28,51 @@ const { target, day, time, location, price } = Astro.props;
             fill="none"
             stroke="currentColor"
             xmlns="http://www.w3.org/2000/svg"
-            ><line
+            ><line y1="-0.5" x2="18.0278" y2="-0.5" transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 56)"></line><line
               y1="-0.5"
               x2="18.0278"
               y2="-0.5"
-              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 56)"
-            ></line><line
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 21)"></line><line
               y1="-0.5"
               x2="18.0278"
               y2="-0.5"
-              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 21)"
-            ></line><line
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 49)"></line><line
               y1="-0.5"
               x2="18.0278"
               y2="-0.5"
-              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 49)"
-            ></line><line
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 14)"></line><line
               y1="-0.5"
               x2="18.0278"
               y2="-0.5"
-              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 14)"
-            ></line><line
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 42)"></line><line
               y1="-0.5"
               x2="18.0278"
               y2="-0.5"
-              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 42)"
-            ></line><line
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 7)"></line><line
               y1="-0.5"
               x2="18.0278"
               y2="-0.5"
-              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 7)"
-            ></line><line
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 70)"></line><line
               y1="-0.5"
               x2="18.0278"
               y2="-0.5"
-              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 70)"
-            ></line><line
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 35)"></line><line
               y1="-0.5"
               x2="18.0278"
               y2="-0.5"
-              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 35)"
-            ></line><line
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 0)"></line><line
               y1="-0.5"
               x2="18.0278"
               y2="-0.5"
-              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 0)"
-            ></line><line
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 63)"></line><line
               y1="-0.5"
               x2="18.0278"
               y2="-0.5"
-              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 63)"
-            ></line><line
-              y1="-0.5"
-              x2="18.0278"
-              y2="-0.5"
-              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 28)"
-            ></line></svg
+              transform="matrix(0.83205 0.5547 0.5547 -0.83205 1 28)"></line></svg
           >
         </div>
         <div class="flex gap-2 flex-col">
-          <div
-            class="font-pj text-base font-normal text-gray-800 lg:text-xl flex flex-row"
-          >
+          <div class="font-pj text-base font-normal text-gray-800 lg:text-xl flex flex-row">
             <p>🕘 &nbsp;</p>
             <div>
               <p>{day}</p>
@@ -100,13 +82,8 @@ const { target, day, time, location, price } = Astro.props;
           <p class="font-pj text-base font-normal text-gray-800 lg:text-xl">
             📍 {location}
           </p>
-          {
-            price && (
-              <p class="font-pj text-base font-normal text-gray-800 lg:text-xl">
-                🪙 {price}
-              </p>
-            )
-          }
+          {price && <p class="font-pj text-base font-normal text-gray-800 lg:text-xl">🪙 {price}</p>}
+          {vipPrice && <p class="font-pj text-base font-normal text-gray-800 lg:text-xl">🪙 {vipPrice}</p>}
           <p class="font-pj text-base font-normal text-gray-800 lg:text-xl">
             🚘 <span class="underline">Free parking!</span>
           </p>
