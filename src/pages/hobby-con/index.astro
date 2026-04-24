@@ -54,6 +54,7 @@ Astro.response.headers.set("Cache-Control", "public, max-age=1800, s-maxage=1800
         headingGradientClass="from-[#232946] to-indigo-600"
         title={section!.title}
         subText={section!.subText!}
+        text={section!.text!}
         {...(i % 2 !== 0 && { class: "bg-white" })}
       >
         {section!.Images.length ? (
