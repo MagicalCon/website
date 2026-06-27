@@ -7,86 +7,65 @@ const target = Astro.props.target;
 ---
 
 <div class="grid auto-cols-max grid-flow-col gap-5 text-center text-white">
-  <div class="bg-black/80 rounded-md text-neutral-content flex flex-col p-2">
-    <span class="countdown font-mono text-5xl">
-      <span id="days" aria-live="polite"></span>
-    </span>
-    days
+  <div class="bg-black/80 rounded-md flex flex-col p-2 w-20">
+    <span id="days" class="font-mono text-5xl font-bold" aria-live="polite">00</span>
+    <span class="text-xs uppercase tracking-wide text-gray-400 mt-1">days</span>
   </div>
-  <div class="bg-black/80 rounded-md text-neutral-content flex flex-col p-2">
-    <span class="countdown font-mono text-5xl">
-      <span id="hours" aria-live="polite"></span>
-    </span>
-    hours
+  <div class="bg-black/80 rounded-md flex flex-col p-2 w-20">
+    <span id="hours" class="font-mono text-5xl font-bold" aria-live="polite">00</span>
+    <span class="text-xs uppercase tracking-wide text-gray-400 mt-1">hours</span>
   </div>
-  <div class="bg-black/80 rounded-md text-neutral-content flex flex-col p-2">
-    <span class="countdown font-mono text-5xl">
-      <span id="minutes" aria-live="polite"></span>
-    </span>
-    min
+  <div class="bg-black/80 rounded-md flex flex-col p-2 w-20">
+    <span id="minutes" class="font-mono text-5xl font-bold" aria-live="polite">00</span>
+    <span class="text-xs uppercase tracking-wide text-gray-400 mt-1">min</span>
   </div>
-  <div class="bg-black/80 rounded-md text-neutral-content flex flex-col p-2">
-    <span class="countdown font-mono text-5xl">
-      <span id="seconds" aria-live="polite"></span>
-    </span>
-    sec
+  <div class="bg-black/80 rounded-md flex flex-col p-2 w-20">
+    <span id="seconds" class="font-mono text-5xl font-bold" aria-live="polite">00</span>
+    <span class="text-xs uppercase tracking-wide text-gray-400 mt-1">sec</span>
   </div>
 </div>
 
 <script is:inline define:vars={{ target }}>
   document.addEventListener("DOMContentLoaded", () => {
-    const days = document.getElementById("days");
-    const hours = document.getElementById("hours");
-    const minutes = document.getElementById("minutes");
-    const seconds = document.getElementById("seconds");
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
 
     const targetTime = new Date(target).getTime();
-    const currentTime = new Date().getTime();
-    let diff = targetTime - currentTime;
 
     const updateCountdown = () => {
+      const currentTime = new Date().getTime();
+      const diff = targetTime - currentTime;
+
+      if (diff <= 0) {
+        clearInterval(countdownInterval);
+        daysEl.innerText = "00";
+        hoursEl.innerText = "00";
+        minutesEl.innerText = "00";
+        secondsEl.innerText = "00";
+        return;
+      }
+
       const remainingDays = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const remainingHours = Math.floor(
-        (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      const remainingMinutes = Math.floor(
-        (diff % (1000 * 60 * 60)) / (1000 * 60)
-      );
+      const remainingHours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const remainingMinutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const remainingSeconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-      const updateElement = (element, value) => {
-        element.innerText = value;
-        element.ariaLabel = value;
-      };
+      const formatNumber = (num) => String(num).padStart(2, "0");
 
-      updateElement(days, remainingDays.toString());
-      updateElement(
-        hours,
-        remainingHours < 10
-          ? "0" + remainingHours.toString()
-          : remainingHours.toString()
-      );
-      updateElement(
-        minutes,
-        remainingMinutes < 10
-          ? "0" + remainingMinutes.toString()
-          : remainingMinutes.toString()
-      );
-      updateElement(
-        seconds,
-        remainingSeconds < 10
-          ? "0" + remainingSeconds.toString()
-          : remainingSeconds.toString()
-      );
+      daysEl.innerText = formatNumber(remainingDays);
+      hoursEl.innerText = formatNumber(remainingHours);
+      minutesEl.innerText = formatNumber(remainingMinutes);
+      secondsEl.innerText = formatNumber(remainingSeconds);
+
+      daysEl.ariaLabel = `${remainingDays} days`;
+      hoursEl.ariaLabel = `${remainingHours} hours`;
+      minutesEl.ariaLabel = `${remainingMinutes} minutes`;
+      secondsEl.ariaLabel = `${remainingSeconds} seconds`;
     };
 
-    const countdownInterval = setInterval(() => {
-      updateCountdown();
-      diff -= 1000;
-
-      if (diff < 0) {
-        clearInterval(countdownInterval);
-      }
-    }, 1000);
+    updateCountdown();
+    const countdownInterval = setInterval(updateCountdown, 1000);
   });
 </script>
