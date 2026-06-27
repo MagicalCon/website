@@ -9,11 +9,7 @@ export default {
   generates: {
     "src/generated/graphql.ts": {
       documents: "./src/**/*.graphql",
-      plugins: [
-        "typescript",
-        "typescript-operations",
-        "typescript-graphql-request",
-      ],
+      plugins: ["typescript", "typescript-operations", "typescript-graphql-request"],
       config: {
         rawRequest: true,
         useTypeImports: true,

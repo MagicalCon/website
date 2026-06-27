@@ -10,24 +10,24 @@
     "codegen": "graphql-codegen --config ./src/codegen.ts"
   },
   "dependencies": {
-    "@astrojs/netlify": "^6.6.4",
-    "@astrojs/sitemap": "^3.7.0",
-    "@tailwindcss/vite": "^4.1.12",
-    "astro": "^5.16.11",
+    "@astrojs/netlify": "8.0.0",
+    "@astrojs/sitemap": "3.7.3",
+    "@tailwindcss/vite": "^4.3.1",
+    "astro": "7.0.3",
     "astro-seo": "^0.8.4",
-    "graphql": "^16.11.0",
-    "graphql-request": "^7.2.0",
-    "resend": "^6.3.0",
-    "sharp": "^0.34.4",
+    "graphql": "^16.14.2",
+    "graphql-request": "^7.4.0",
+    "resend": "^6.14.0",
+    "sharp": "^0.34.5",
     "tailwind-fluid-typography": "^2.0.0",
-    "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.12"
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^4.3.1"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.7",
     "@graphql-codegen/typescript": "4.1.6",
-    "@graphql-codegen/typescript-graphql-request": "^6.3.0",
-    "typescript": "^5.9.2",
-    "vite": "^7.1.4"
+    "@graphql-codegen/typescript-graphql-request": "^6.4.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.6"
   }
 }

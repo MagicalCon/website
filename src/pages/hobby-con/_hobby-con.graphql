@@ -1,5 +1,18 @@
 query HobbyCon {
   hobbyCon {
+    eventInfo {
+      id
+      startDate
+      endDate
+      vipStartDate
+      vipEndDate
+      location
+      showButton
+      price
+      vipPrice
+      buttonLabel
+      buttonUrl
+    }
     seo {
       metaTitle
       metaDescription

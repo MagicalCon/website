@@ -54,6 +54,9 @@ export type ComponentDataDisplayEventInfo = {
   price?: Maybe<Scalars['String']['output']>;
   showButton: Scalars['Boolean']['output'];
   startDate: Scalars['DateTime']['output'];
+  vipEndDate?: Maybe<Scalars['DateTime']['output']>;
+  vipPrice?: Maybe<Scalars['String']['output']>;
+  vipStartDate?: Maybe<Scalars['DateTime']['output']>;
 };
 
 export type ComponentDataDisplayEventInfoInput = {
@@ -65,6 +68,9 @@ export type ComponentDataDisplayEventInfoInput = {
   price?: InputMaybe<Scalars['String']['input']>;
   showButton?: InputMaybe<Scalars['Boolean']['input']>;
   startDate?: InputMaybe<Scalars['DateTime']['input']>;
+  vipEndDate?: InputMaybe<Scalars['DateTime']['input']>;
+  vipPrice?: InputMaybe<Scalars['String']['input']>;
+  vipStartDate?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type ComponentDataDisplayPersona = {
@@ -852,6 +858,17 @@ export type PhotographerInput = {
   social?: InputMaybe<Array<InputMaybe<ComponentDataDisplayPersonaInput>>>;
 };
 
+export enum PublicationFilter {
+  HasPublishedVersion = 'HAS_PUBLISHED_VERSION',
+  HasPublishedVersionDocument = 'HAS_PUBLISHED_VERSION_DOCUMENT',
+  Modified = 'MODIFIED',
+  NeverPublished = 'NEVER_PUBLISHED',
+  NeverPublishedDocument = 'NEVER_PUBLISHED_DOCUMENT',
+  PublishedWithoutDraft = 'PUBLISHED_WITHOUT_DRAFT',
+  PublishedWithDraft = 'PUBLISHED_WITH_DRAFT',
+  Unmodified = 'UNMODIFIED'
+}
+
 export enum PublicationStatus {
   Draft = 'DRAFT',
   Published = 'PUBLISHED'
@@ -894,19 +911,25 @@ export type Query = {
 
 
 export type QueryCosplayConArgs = {
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryCosplayerArgs = {
   documentId: Scalars['ID']['input'];
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryCosplayersArgs = {
   filters?: InputMaybe<CosplayerFiltersInput>;
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -914,46 +937,62 @@ export type QueryCosplayersArgs = {
 
 export type QueryCosplayers_ConnectionArgs = {
   filters?: InputMaybe<CosplayerFiltersInput>;
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryDisneyMarketArgs = {
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryExhibitorArgs = {
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryFaqArgs = {
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryGlobalArgs = {
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryHobbyConArgs = {
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryI18NLocaleArgs = {
   documentId: Scalars['ID']['input'];
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryI18NLocalesArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -961,7 +1000,9 @@ export type QueryI18NLocalesArgs = {
 
 export type QueryI18NLocales_ConnectionArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -969,13 +1010,17 @@ export type QueryI18NLocales_ConnectionArgs = {
 
 export type QueryPhotographerArgs = {
   documentId: Scalars['ID']['input'];
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryPhotographersArgs = {
   filters?: InputMaybe<PhotographerFiltersInput>;
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -983,7 +1028,9 @@ export type QueryPhotographersArgs = {
 
 export type QueryPhotographers_ConnectionArgs = {
   filters?: InputMaybe<PhotographerFiltersInput>;
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -991,19 +1038,25 @@ export type QueryPhotographers_ConnectionArgs = {
 
 export type QueryReviewWorkflowsWorkflowArgs = {
   documentId: Scalars['ID']['input'];
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryReviewWorkflowsWorkflowStageArgs = {
   documentId: Scalars['ID']['input'];
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryReviewWorkflowsWorkflowStagesArgs = {
   filters?: InputMaybe<ReviewWorkflowsWorkflowStageFiltersInput>;
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -1011,7 +1064,9 @@ export type QueryReviewWorkflowsWorkflowStagesArgs = {
 
 export type QueryReviewWorkflowsWorkflowStages_ConnectionArgs = {
   filters?: InputMaybe<ReviewWorkflowsWorkflowStageFiltersInput>;
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -1019,7 +1074,9 @@ export type QueryReviewWorkflowsWorkflowStages_ConnectionArgs = {
 
 export type QueryReviewWorkflowsWorkflowsArgs = {
   filters?: InputMaybe<ReviewWorkflowsWorkflowFiltersInput>;
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -1027,7 +1084,9 @@ export type QueryReviewWorkflowsWorkflowsArgs = {
 
 export type QueryReviewWorkflowsWorkflows_ConnectionArgs = {
   filters?: InputMaybe<ReviewWorkflowsWorkflowFiltersInput>;
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -1035,13 +1094,17 @@ export type QueryReviewWorkflowsWorkflows_ConnectionArgs = {
 
 export type QueryUploadFileArgs = {
   documentId: Scalars['ID']['input'];
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryUploadFilesArgs = {
   filters?: InputMaybe<UploadFileFiltersInput>;
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -1049,7 +1112,9 @@ export type QueryUploadFilesArgs = {
 
 export type QueryUploadFiles_ConnectionArgs = {
   filters?: InputMaybe<UploadFileFiltersInput>;
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -1057,13 +1122,17 @@ export type QueryUploadFiles_ConnectionArgs = {
 
 export type QueryUsersPermissionsRoleArgs = {
   documentId: Scalars['ID']['input'];
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryUsersPermissionsRolesArgs = {
   filters?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -1071,7 +1140,9 @@ export type QueryUsersPermissionsRolesArgs = {
 
 export type QueryUsersPermissionsRoles_ConnectionArgs = {
   filters?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -1079,13 +1150,17 @@ export type QueryUsersPermissionsRoles_ConnectionArgs = {
 
 export type QueryUsersPermissionsUserArgs = {
   documentId: Scalars['ID']['input'];
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryUsersPermissionsUsersArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -1093,7 +1168,9 @@ export type QueryUsersPermissionsUsersArgs = {
 
 export type QueryUsersPermissionsUsers_ConnectionArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -1227,6 +1304,7 @@ export type UploadFile = {
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   documentId: Scalars['ID']['output'];
   ext?: Maybe<Scalars['String']['output']>;
+  focalPoint?: Maybe<Scalars['JSON']['output']>;
   formats?: Maybe<Scalars['JSON']['output']>;
   hash: Scalars['String']['output'];
   height?: Maybe<Scalars['Int']['output']>;
@@ -1256,6 +1334,7 @@ export type UploadFileFiltersInput = {
   createdAt?: InputMaybe<DateTimeFilterInput>;
   documentId?: InputMaybe<IdFilterInput>;
   ext?: InputMaybe<StringFilterInput>;
+  focalPoint?: InputMaybe<JsonFilterInput>;
   formats?: InputMaybe<JsonFilterInput>;
   hash?: InputMaybe<StringFilterInput>;
   height?: InputMaybe<IntFilterInput>;
@@ -1505,12 +1584,12 @@ export type ExhibitorQuery = { __typename?: 'Query', exhibitor?: { __typename?: 
 export type CosplayConQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CosplayConQuery = { __typename?: 'Query', cosplayCon?: { __typename?: 'CosplayCon', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string, shareImage?: { __typename?: 'UploadFile', name: string, width?: number | null, height?: number | null, alternativeText?: string | null } | null } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, text?: string | null, table?: any | null, Images: Array<{ __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string, width?: number | null, height?: number | null, caption?: string | null } | null> } | null> | null } | null };
+export type CosplayConQuery = { __typename?: 'Query', cosplayCon?: { __typename?: 'CosplayCon', eventInfo?: { __typename?: 'ComponentDataDisplayEventInfo', id: string, startDate: any, endDate: any, vipStartDate?: any | null, vipEndDate?: any | null, location: string, showButton: boolean, price?: string | null, vipPrice?: string | null, buttonLabel?: string | null, buttonUrl?: string | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string, shareImage?: { __typename?: 'UploadFile', name: string, width?: number | null, height?: number | null, alternativeText?: string | null } | null } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, text?: string | null, table?: any | null, Images: Array<{ __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string, width?: number | null, height?: number | null, caption?: string | null } | null> } | null> | null } | null };
 
 export type DisneyMarketQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type DisneyMarketQuery = { __typename?: 'Query', disneyMarket?: { __typename?: 'DisneyMarket', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, text?: string | null, table?: any | null, Images: Array<{ __typename?: 'UploadFile', alternativeText?: string | null, height?: number | null, width?: number | null, url: string, name: string, caption?: string | null } | null> } | null> | null } | null };
+export type DisneyMarketQuery = { __typename?: 'Query', disneyMarket?: { __typename?: 'DisneyMarket', eventInfo?: { __typename?: 'ComponentDataDisplayEventInfo', id: string, startDate: any, endDate: any, vipStartDate?: any | null, vipEndDate?: any | null, location: string, showButton: boolean, price?: string | null, vipPrice?: string | null, buttonLabel?: string | null, buttonUrl?: string | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, text?: string | null, table?: any | null, Images: Array<{ __typename?: 'UploadFile', alternativeText?: string | null, height?: number | null, width?: number | null, url: string, name: string, caption?: string | null } | null> } | null> | null } | null };
 
 export type CosplayersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1530,7 +1609,7 @@ export type FaqQuery = { __typename?: 'Query', faq?: { __typename?: 'Faq', accor
 export type HobbyConQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HobbyConQuery = { __typename?: 'Query', hobbyCon?: { __typename?: 'HobbyCon', seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, text?: string | null, table?: any | null, Images: Array<{ __typename?: 'UploadFile', alternativeText?: string | null, height?: number | null, width?: number | null, url: string, name: string, caption?: string | null } | null> } | null> | null } | null };
+export type HobbyConQuery = { __typename?: 'Query', hobbyCon?: { __typename?: 'HobbyCon', eventInfo?: { __typename?: 'ComponentDataDisplayEventInfo', id: string, startDate: any, endDate: any, vipStartDate?: any | null, vipEndDate?: any | null, location: string, showButton: boolean, price?: string | null, vipPrice?: string | null, buttonLabel?: string | null, buttonUrl?: string | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string } | null, sections?: Array<{ __typename?: 'ComponentLayoutSection', title: string, subText?: string | null, text?: string | null, table?: any | null, Images: Array<{ __typename?: 'UploadFile', alternativeText?: string | null, height?: number | null, width?: number | null, url: string, name: string, caption?: string | null } | null> } | null> | null } | null };
 
 
 export const LayoutDocument = `
@@ -1562,6 +1641,19 @@ export const ExhibitorDocument = `
 export const CosplayConDocument = `
     query CosplayCon {
   cosplayCon {
+    eventInfo {
+      id
+      startDate
+      endDate
+      vipStartDate
+      vipEndDate
+      location
+      showButton
+      price
+      vipPrice
+      buttonLabel
+      buttonUrl
+    }
     seo {
       metaTitle
       metaDescription
@@ -1592,6 +1684,19 @@ export const CosplayConDocument = `
 export const DisneyMarketDocument = `
     query DisneyMarket {
   disneyMarket {
+    eventInfo {
+      id
+      startDate
+      endDate
+      vipStartDate
+      vipEndDate
+      location
+      showButton
+      price
+      vipPrice
+      buttonLabel
+      buttonUrl
+    }
     seo {
       metaTitle
       metaDescription
@@ -1656,6 +1761,19 @@ export const FaqDocument = `
 export const HobbyConDocument = `
     query HobbyCon {
   hobbyCon {
+    eventInfo {
+      id
+      startDate
+      endDate
+      vipStartDate
+      vipEndDate
+      location
+      showButton
+      price
+      vipPrice
+      buttonLabel
+      buttonUrl
+    }
     seo {
       metaTitle
       metaDescription

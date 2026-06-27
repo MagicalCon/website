@@ -1,16 +1,11 @@
 ---
+import type { ComponentDataDisplayEventInfo } from "@/generated/graphql";
 import Countdown from "./Countdown.astro";
 
-type Props = {
-  target: string;
-  day: string;
-  time: string;
-  location: string;
-  price?: string;
-  vipPrice?: string;
-};
+type Props = Partial<ComponentDataDisplayEventInfo>;
 
-const { target, day, time, location, price, vipPrice } = Astro.props;
+const { startDate, endDate, vipStartDate, vipEndDate, location, showButton, price, vipPrice, buttonLabel, buttonUrl } =
+  Astro.props;
 ---
 
 <section
@@ -19,7 +14,7 @@ const { target, day, time, location, price, vipPrice } = Astro.props;
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="md:flex md:items-center md:justify-between md:space-x-16">
       <div class="max-w-lg xl:max-w-2xl">
-        <Countdown target={target} />
+        <Countdown target={startDate} />
       </div><div class="mt-12 flex flex-grow items-center space-x-4 sm:space-x-8 md:mt-0 lg:space-x-16">
         <div>
           <svg
@@ -75,8 +70,27 @@ const { target, day, time, location, price, vipPrice } = Astro.props;
           <div class="font-pj text-base font-normal text-gray-800 lg:text-xl flex flex-row">
             <p>🕘 &nbsp;</p>
             <div>
-              <p>{day}</p>
-              <p>{time}</p>
+              <p>
+                {
+                  new Date(startDate).toLocaleDateString("en-GB", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })
+                }
+              </p>
+              <p>
+                {new Date(startDate).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })} - {
+                  new Date(endDate).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })
+                }
+                {
+                  vipStartDate &&
+                    ` / VIP ${new Date(vipStartDate).toLocaleTimeString("en-GB", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })} - ${new Date(vipEndDate).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}`
+                }
+              </p>
             </div>
           </div>
           <p class="font-pj text-base font-normal text-gray-800 lg:text-xl">
@@ -87,7 +101,17 @@ const { target, day, time, location, price, vipPrice } = Astro.props;
           <p class="font-pj text-base font-normal text-gray-800 lg:text-xl">
             🚘 <span class="underline">Free parking!</span>
           </p>
-          <slot name="cta-button" />
+          {
+            showButton && (
+              <a
+                href={buttonUrl}
+                target="_blank"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded self-start mt-2"
+              >
+                {buttonLabel}
+              </a>
+            )
+          }
         </div>
       </div>
     </div>

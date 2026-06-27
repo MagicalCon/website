@@ -58,23 +58,7 @@ Astro.response.headers.set("Cache-Control", "public, max-age=1800, s-maxage=1800
       widths={[240, 540, 720, magicalDisneyMarktLogo.width]}
     />
   </Hero>
-  <EventInfo
-    target="29 November 2026 11:00:00"
-    day="29 November 2026"
-    time="11:00 - 17:00 / VIP 10:00 - 17:00"
-    location="Belgium - Stadsfeestzaal Aarschot. - Demervallei 14, 3200 Aarschot"
-    price="€ 3 entry via cash / Payconiq at the entrance"
-    vipPrice="€ 9 VIP - Online only"
-  >
-    <a
-      slot="cta-button"
-      href="https://magical-verzameldisney-markt.eventsquare.store/cw3r390johky"
-      target="_blank"
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded self-start mt-2"
-    >
-      Buy VIP ticket
-    </a>
-  </EventInfo>
+  <EventInfo {...disneyMarket!.eventInfo} />
   <!-- <Section
     headingGradientClass="from-cyan-500 to-blue-500"
     title="Food for all"
