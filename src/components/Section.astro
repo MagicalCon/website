@@ -8,24 +8,18 @@ type Props = {
 };
 ---
 
-<section class:list={["text-center md:py-20 py-10", Astro.props.class]}>
+<section class:list={["w-full max-w-full overflow-hidden text-center md:py-20 py-10 px-4", Astro.props.class]}>
   <h1
-    class={`font-bold fluid-3xl bg-gradient-to-r ${Astro.props.headingGradientClass} bg-clip-text text-transparent font-mouse`}
+    class={`font-bold fluid-3xl bg-linear-to-r ${Astro.props.headingGradientClass} bg-clip-text text-transparent font-mouse wrap-break-word`}
   >
     {Astro.props.title}
   </h1>
 
-  {
-    Astro.props.subText && (
-      <h2 class="md:fluid-lg mt-3">{Astro.props.subText}</h2>
-    )
-  }
+  {Astro.props.subText && <h2 class="md:fluid-lg mt-3 wrap-break-word">{Astro.props.subText}</h2>}
 
-  {
-    Astro.props.text && (
-      <p class="text-fluid whitespace-pre-wrap mt-3">{Astro.props.text}</p>
-    )
-  }
+  {Astro.props.text && <p class="text-fluid whitespace-pre-wrap mt-3 wrap-break-word">{Astro.props.text}</p>}
 
-  <slot name="content" />
+  <div class="w-full flex justify-center mt-6">
+    <slot name="content" />
+  </div>
 </section>

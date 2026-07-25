@@ -22,18 +22,37 @@ const filteredHeaderLinks = Astro.props.headerLinks.filter((link) => {
 ---
 
 <header
-  class="tracking-tight bg-[#fffffe] md:max-w-4xl w-full md:rounded-full flex md:fixed md:mt-5 z-10 items-center"
+  class="tracking-tight bg-[#fffffe] md:max-w-4xl w-full md:rounded-full flex flex-col md:flex-row md:fixed md:mt-5 z-10 items-center justify-between px-6 py-4 md:py-0 shadow-md md:shadow-none"
 >
-  <div class="hidden md:flex pl-8 h-full">
+  <!-- Mobile -->
+  <div class="flex items-center justify-between w-full md:w-auto md:pl-8">
     <a class="font-mouse fluid-lg" href="/">Magical Events</a>
+    <details class="md:hidden group relative">
+      <summary
+        class="list-none cursor-pointer p-2 rounded-lg hover:bg-gray-100 focus:outline-none"
+        aria-label="Toggle Navigation Menu"
+      >
+        <svg class="w-6 h-6 group-open:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+
+        <svg class="w-6 h-6 hidden group-open:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </summary>
+
+      <nav
+        class="absolute right-0 top-full mt-3 w-56 bg-[#fffffe] rounded-2xl shadow-xl border border-gray-100 flex flex-col p-4 gap-3 text-center z-20"
+      >
+        {filteredHeaderLinks.map((link) => <HeaderLink href={link.url}>{link.text}</HeaderLink>)}
+      </nav>
+    </details>
   </div>
-  <nav class="flex py-4 md:px-4 mx-auto">
+
+  <!-- Desktop -->
+  <nav class="hidden md:flex py-4 md:px-4 mx-auto">
     <div class="flex gap-5 text-center">
-      {
-        filteredHeaderLinks.map((link) => (
-          <HeaderLink href={link.url}>{link.text}</HeaderLink>
-        ))
-      }
+      {filteredHeaderLinks.map((link) => <HeaderLink href={link.url}>{link.text}</HeaderLink>)}
     </div>
   </nav>
 </header>
