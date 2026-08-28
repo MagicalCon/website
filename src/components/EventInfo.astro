@@ -82,15 +82,25 @@ const localStartDate = startDate.toL;
                 }
               </p>
               <p>
-                {new Date(startDate).toLocaleTimeString("nl-NL", { hour: "2-digit", minute: "2-digit" })} - {
-                  new Date(endDate).toLocaleTimeString("nl-NL", { hour: "2-digit", minute: "2-digit" })
+                {
+                  new Date(startDate).toLocaleTimeString("nl-NL", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    timeZone: "Europe/Amsterdam",
+                  })
+                } - {
+                  new Date(endDate).toLocaleTimeString("nl-NL", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    timeZone: "Europe/Amsterdam",
+                  })
                 }
                 {
                   vipStartDate &&
                     ` / VIP ${new Date(vipStartDate).toLocaleTimeString("nl-NL", {
                       hour: "2-digit",
                       minute: "2-digit",
-                    })} - ${new Date(vipEndDate).toLocaleTimeString("nl-NL", { hour: "2-digit", minute: "2-digit" })}`
+                    })} - ${new Date(vipEndDate).toLocaleTimeString("nl-NL", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Amsterdam" })}`
                 }
               </p>
             </div>
