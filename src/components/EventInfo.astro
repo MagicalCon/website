@@ -6,6 +6,8 @@ type Props = Partial<ComponentDataDisplayEventInfo>;
 
 const { startDate, endDate, vipStartDate, vipEndDate, location, showButton, price, vipPrice, buttonLabel, buttonUrl } =
   Astro.props;
+
+const localStartDate = startDate.toL;
 ---
 
 <section
@@ -72,7 +74,7 @@ const { startDate, endDate, vipStartDate, vipEndDate, location, showButton, pric
             <div>
               <p>
                 {
-                  new Date(startDate).toLocaleDateString("en-GB", {
+                  new Date(startDate).toLocaleDateString("nl-NL", {
                     day: "numeric",
                     month: "long",
                     year: "numeric",
@@ -80,15 +82,15 @@ const { startDate, endDate, vipStartDate, vipEndDate, location, showButton, pric
                 }
               </p>
               <p>
-                {new Date(startDate).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })} - {
-                  new Date(endDate).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })
+                {new Date(startDate).toLocaleTimeString("nl-NL", { hour: "2-digit", minute: "2-digit" })} - {
+                  new Date(endDate).toLocaleTimeString("nl-NL", { hour: "2-digit", minute: "2-digit" })
                 }
                 {
                   vipStartDate &&
-                    ` / VIP ${new Date(vipStartDate).toLocaleTimeString("en-GB", {
+                    ` / VIP ${new Date(vipStartDate).toLocaleTimeString("nl-NL", {
                       hour: "2-digit",
                       minute: "2-digit",
-                    })} - ${new Date(vipEndDate).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}`
+                    })} - ${new Date(vipEndDate).toLocaleTimeString("nl-NL", { hour: "2-digit", minute: "2-digit" })}`
                 }
               </p>
             </div>
