@@ -78,6 +78,7 @@ const localStartDate = startDate.toL;
                     day: "numeric",
                     month: "long",
                     year: "numeric",
+                    timeZone: "Europe/Amsterdam",
                   })
                 }
               </p>
@@ -100,6 +101,7 @@ const localStartDate = startDate.toL;
                     ` / VIP ${new Date(vipStartDate).toLocaleTimeString("nl-NL", {
                       hour: "2-digit",
                       minute: "2-digit",
+                      timeZone: "Europe/Amsterdam",
                     })} - ${new Date(vipEndDate).toLocaleTimeString("nl-NL", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Amsterdam" })}`
                 }
               </p>
